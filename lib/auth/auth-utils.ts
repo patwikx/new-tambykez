@@ -1,5 +1,5 @@
 // lib/auth-utils.ts - Server-side utilities
-import { auth } from "@/lib/auth/auth"
+import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { UserRole } from "@prisma/client"
 

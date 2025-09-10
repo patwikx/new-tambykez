@@ -1,5 +1,5 @@
 // middleware.ts
-import { auth } from "@/lib/auth/auth"
+import { auth } from "@/auth"
 import { NextResponse } from "next/server"
 
 

@@ -7,7 +7,6 @@ import { prisma } from "@/lib/prisma"
 import bcrypt from "bcryptjs"
 import type { UserRole } from "@prisma/client"
 import { z } from "zod"
-import crypto from "crypto"
 
 // Type definitions
 interface GoogleProfile extends Profile {
@@ -177,7 +176,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 lastName: validatedProfile.family_name || "",
                 role: "CUSTOMER",
                 isActive: true,
-                password: await bcrypt.hash(crypto.randomUUID(), 12),
+                password: await bcrypt.hash(globalThis.crypto.randomUUID(), 12),
               },
             })
           }

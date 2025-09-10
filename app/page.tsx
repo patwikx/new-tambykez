@@ -1,103 +1,419 @@
-import Image from "next/image";
+import { Box, Container, Typography, Button, Card, CardContent, CardMedia, Rating } from "@mui/material"
+import { ArrowForward, LocalShipping, Security, Support, Star } from "@mui/icons-material"
+import { getFeaturedProducts, getCategories } from "@/lib/actions/products"
 
-export default function Home() {
+export default async function Home() {
+  const [featuredProducts, categories] = await Promise.all([getFeaturedProducts(), getCategories()])
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <Box sx={{ minHeight: "100vh", bgcolor: "#000000", color: "white" }}>
+      {/* Hero Section */}
+      <Box
+        sx={{
+          position: "relative",
+          height: "80vh",
+          backgroundImage: "url(/placeholder.svg?height=800&width=1200&query=motorcycle rider on dark road with gear)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          display: "flex",
+          alignItems: "center",
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            zIndex: 1,
+          },
+        }}
+      >
+        <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
+          <Box sx={{ maxWidth: 600 }}>
+            <Typography
+              variant="h1"
+              sx={{
+                fontSize: { xs: "2.5rem", md: "4rem" },
+                fontWeight: 900,
+                letterSpacing: "-0.02em",
+                lineHeight: 1.1,
+                mb: 3,
+                textTransform: "uppercase",
+              }}
+            >
+              GEAR UP FOR THE RIDE
+            </Typography>
+            <Typography
+              variant="h5"
+              sx={{
+                fontSize: { xs: "1.1rem", md: "1.3rem" },
+                fontWeight: 400,
+                lineHeight: 1.5,
+                mb: 4,
+                opacity: 0.9,
+              }}
+            >
+              Premium motorcycle gear from the world&apos;s leading brands. Protection, performance, and style for every
+              rider.
+            </Typography>
+            <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
+              <Button
+                variant="contained"
+                size="large"
+                endIcon={<ArrowForward />}
+                sx={{
+                  bgcolor: "#FF6B35",
+                  color: "white",
+                  px: 4,
+                  py: 1.5,
+                  fontSize: "1.1rem",
+                  fontWeight: 600,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                  "&:hover": {
+                    bgcolor: "#E55A2B",
+                    transform: "translateY(-2px)",
+                  },
+                  transition: "all 0.3s ease",
+                }}
+              >
+                SHOP NOW
+              </Button>
+              <Button
+                variant="outlined"
+                size="large"
+                sx={{
+                  borderColor: "white",
+                  color: "white",
+                  px: 4,
+                  py: 1.5,
+                  fontSize: "1.1rem",
+                  fontWeight: 600,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                  "&:hover": {
+                    borderColor: "#FF6B35",
+                    color: "#FF6B35",
+                    bgcolor: "rgba(255, 107, 53, 0.1)",
+                  },
+                }}
+              >
+                VIEW CATALOG
+              </Button>
+            </Box>
+          </Box>
+        </Container>
+      </Box>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      {/* Features Section */}
+      <Box sx={{ py: 6, bgcolor: "#111111" }}>
+        <Container maxWidth="lg">
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4, justifyContent: "center" }}>
+            <Box sx={{ textAlign: "center", flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 22%" } }}>
+              <LocalShipping sx={{ fontSize: 48, color: "#FF6B35", mb: 2 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, textTransform: "uppercase" }}>
+                FREE SHIPPING
+              </Typography>
+              <Typography variant="body2" sx={{ opacity: 0.8 }}>
+                On orders over $99
+              </Typography>
+            </Box>
+            <Box sx={{ textAlign: "center", flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 22%" } }}>
+              <Security sx={{ fontSize: 48, color: "#FF6B35", mb: 2 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, textTransform: "uppercase" }}>
+                SECURE PAYMENT
+              </Typography>
+              <Typography variant="body2" sx={{ opacity: 0.8 }}>
+                100% secure checkout
+              </Typography>
+            </Box>
+            <Box sx={{ textAlign: "center", flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 22%" } }}>
+              <Support sx={{ fontSize: 48, color: "#FF6B35", mb: 2 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, textTransform: "uppercase" }}>
+                24/7 SUPPORT
+              </Typography>
+              <Typography variant="body2" sx={{ opacity: 0.8 }}>
+                Expert customer service
+              </Typography>
+            </Box>
+            <Box sx={{ textAlign: "center", flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 22%" } }}>
+              <Star sx={{ fontSize: 48, color: "#FF6B35", mb: 2 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, textTransform: "uppercase" }}>
+                PREMIUM BRANDS
+              </Typography>
+              <Typography variant="body2" sx={{ opacity: 0.8 }}>
+                Authorized dealer
+              </Typography>
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+
+      {/* Categories Section */}
+      <Box sx={{ py: 8 }}>
+        <Container maxWidth="lg">
+          <Typography
+            variant="h2"
+            sx={{
+              fontSize: { xs: "2rem", md: "3rem" },
+              fontWeight: 900,
+              textAlign: "center",
+              mb: 6,
+              textTransform: "uppercase",
+              letterSpacing: "-0.02em",
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            SHOP BY CATEGORY
+          </Typography>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, justifyContent: "center" }}>
+            {categories.map((category) => (
+              <Box key={category.id} sx={{ flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 30%" } }}>
+                <Card
+                  sx={{
+                    bgcolor: "#111111",
+                    border: "1px solid #333",
+                    borderRadius: 2,
+                    overflow: "hidden",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                    height: "100%",
+                    "&:hover": {
+                      transform: "translateY(-8px)",
+                      borderColor: "#FF6B35",
+                      boxShadow: "0 20px 40px rgba(255, 107, 53, 0.2)",
+                    },
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    height="200"
+                    image={category.image || "/motorcycle-gear-category.jpg"}
+                    alt={category.name}
+                    sx={{ objectFit: "cover" }}
+                  />
+                  <CardContent sx={{ p: 3 }}>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontWeight: 700,
+                        color: "white",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.5px",
+                        mb: 1,
+                      }}
+                    >
+                      {category.name}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: "#999" }}>
+                      {category.productCount} products
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Box>
+            ))}
+          </Box>
+        </Container>
+      </Box>
+
+      {/* Featured Products Section */}
+      <Box sx={{ py: 8, bgcolor: "#111111" }}>
+        <Container maxWidth="lg">
+          <Typography
+            variant="h2"
+            sx={{
+              fontSize: { xs: "2rem", md: "3rem" },
+              fontWeight: 900,
+              textAlign: "center",
+              mb: 6,
+              textTransform: "uppercase",
+              letterSpacing: "-0.02em",
+            }}
           >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+            FEATURED PRODUCTS
+          </Typography>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4, justifyContent: "center" }}>
+            {featuredProducts.map((product) => (
+              <Box key={product.id} sx={{ flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 22%" } }}>
+                <Card
+                  sx={{
+                    bgcolor: "#000000",
+                    border: "1px solid #333",
+                    borderRadius: 2,
+                    overflow: "hidden",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    "&:hover": {
+                      transform: "translateY(-8px)",
+                      borderColor: "#FF6B35",
+                      boxShadow: "0 20px 40px rgba(255, 107, 53, 0.2)",
+                    },
+                  }}
+                >
+                  <Box sx={{ position: "relative" }}>
+                    <CardMedia
+                      component="img"
+                      height="300"
+                      image={product.images?.[0] || "/motorcycle-gear-product.jpg"}
+                      alt={product.name}
+                      sx={{ objectFit: "cover" }}
+                    />
+                  </Box>
+                  <CardContent sx={{ p: 3, flexGrow: 1, display: "flex", flexDirection: "column" }}>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#FF6B35",
+                        fontWeight: 600,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.5px",
+                        mb: 1,
+                      }}
+                    >
+                      {product.brand?.name || "Brand"}
+                    </Typography>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontWeight: 600,
+                        color: "white",
+                        mb: 2,
+                        fontSize: "0.95rem",
+                        lineHeight: 1.3,
+                        height: "2.6rem",
+                        overflow: "hidden",
+                        display: "-webkit-box",
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: "vertical",
+                      }}
+                    >
+                      {product.name}
+                    </Typography>
+                    <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+                      <Rating
+                        value={product.rating || 0}
+                        precision={0.1}
+                        readOnly
+                        size="small"
+                        sx={{
+                          "& .MuiRating-iconFilled": {
+                            color: "#FF6B35",
+                          },
+                        }}
+                      />
+                      <Typography variant="body2" sx={{ color: "#999", ml: 1 }}>
+                        ({product.reviewCount})
+                      </Typography>
+                    </Box>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: "auto" }}>
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          fontWeight: 700,
+                          color: "#FF6B35",
+                          fontSize: "1.1rem",
+                        }}
+                      >
+                        ${product.variants?.find((v) => v.isDefault)?.price || product.variants?.[0]?.price || 0}
+                      </Typography>
+                      {product.variants?.find((v) => v.isDefault)?.compareAtPrice && (
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "#666",
+                            textDecoration: "line-through",
+                          }}
+                        >
+                          ${product.variants.find((v) => v.isDefault)?.compareAtPrice}
+                        </Typography>
+                      )}
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Box>
+            ))}
+          </Box>
+          <Box sx={{ textAlign: "center", mt: 6 }}>
+            <Button
+              variant="outlined"
+              size="large"
+              endIcon={<ArrowForward />}
+              sx={{
+                borderColor: "#FF6B35",
+                color: "#FF6B35",
+                px: 4,
+                py: 1.5,
+                fontSize: "1.1rem",
+                fontWeight: 600,
+                textTransform: "uppercase",
+                letterSpacing: "0.5px",
+                "&:hover": {
+                  borderColor: "#FF6B35",
+                  bgcolor: "rgba(255, 107, 53, 0.1)",
+                },
+              }}
+            >
+              VIEW ALL PRODUCTS
+            </Button>
+          </Box>
+        </Container>
+      </Box>
+
+      {/* Newsletter Section */}
+      <Box sx={{ py: 8, bgcolor: "#FF6B35" }}>
+        <Container maxWidth="md">
+          <Box sx={{ textAlign: "center" }}>
+            <Typography
+              variant="h3"
+              sx={{
+                fontSize: { xs: "1.8rem", md: "2.5rem" },
+                fontWeight: 900,
+                color: "white",
+                mb: 2,
+                textTransform: "uppercase",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              STAY IN THE LOOP
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                color: "white",
+                mb: 4,
+                opacity: 0.9,
+                fontWeight: 400,
+              }}
+            >
+              Get the latest gear updates, exclusive deals, and riding tips delivered to your inbox.
+            </Typography>
+            <Button
+              variant="contained"
+              size="large"
+              sx={{
+                bgcolor: "white",
+                color: "#FF6B35",
+                px: 4,
+                py: 1.5,
+                fontSize: "1.1rem",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "0.5px",
+                "&:hover": {
+                  bgcolor: "#f5f5f5",
+                  transform: "translateY(-2px)",
+                },
+                transition: "all 0.3s ease",
+              }}
+            >
+              SUBSCRIBE NOW
+            </Button>
+          </Box>
+        </Container>
+      </Box>
+    </Box>
+  )
 }

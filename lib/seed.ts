@@ -27,8 +27,10 @@ function createSlug(name: string): string {
 async function main() {
   console.log('Start seeding...');
 
+  await deleteData();
+
   // 1. Create a System Admin User
-  const password = await bcrypt.hash('asdasd123', 10);
+  const password = await bcrypt.hash('tambykez-admin', 10);
   const adminUser = await prisma.user.upsert({
     where: { email: 'admin@tambykez.com' },
     update: {},
@@ -75,11 +77,10 @@ async function main() {
 
     if (cat.children) {
       for (const childName of cat.children) {
-        const childSlug = `${cat.slug}-${createSlug(childName)}`;
         const childCategory = await prisma.category.create({
           data: {
-            name: childName,
-            slug: childSlug,
+            name: `${cat.name} - ${childName}`,
+            slug: createSlug(`${cat.name} ${childName}`),
             description: faker.lorem.paragraph(),
             parentId: parentCategory.id,
             isActive: true,
@@ -163,26 +164,72 @@ async function main() {
       });
     }
 
-    // Add some reviews for a few products
+    // Add a single review for a few products
     if (i % 5 === 0) {
-      const reviewCount = faker.number.int({ min: 1, max: 3 });
-      for (let l = 0; l < reviewCount; l++) {
-        await prisma.review.create({
-          data: {
-            productId: product.id,
-            userId: adminUser.id, // Using the admin user as reviewer for simplicity
-            rating: faker.number.int({ min: 3, max: 5 }),
-            title: faker.lorem.words(3),
-            comment: faker.lorem.sentence(),
-            isVerified: true,
-            isApproved: true,
-          },
-        });
-      }
+      await prisma.review.create({
+        data: {
+          productId: product.id,
+          userId: adminUser.id,
+          rating: faker.number.int({ min: 3, max: 5 }),
+          title: faker.lorem.words(3),
+          comment: faker.lorem.sentence(),
+          isVerified: true,
+          isApproved: true,
+        },
+      });
     }
   }
 
   console.log('Seeding finished.');
+}
+
+async function deleteData() {
+  console.log('Deleting existing data...');
+
+  // Delete in reverse order to respect foreign key constraints
+  await prisma.review.deleteMany();
+  await prisma.productImage.deleteMany();
+  await prisma.productVariant.deleteMany();
+  await prisma.productCollection.deleteMany();
+  await prisma.productCategory.deleteMany();
+  await prisma.productAttribute.deleteMany();
+  await prisma.productSEO.deleteMany();
+  await prisma.productView.deleteMany();
+  await prisma.wishlistItem.deleteMany();
+  await prisma.cartItem.deleteMany();
+  await prisma.orderItem.deleteMany();
+  await prisma.payment.deleteMany();
+  await prisma.order.deleteMany();
+  await prisma.inventoryLog.deleteMany();
+  await prisma.priceHistory.deleteMany();
+  await prisma.notification.deleteMany();
+  await prisma.loginAttempt.deleteMany();
+  await prisma.securityLog.deleteMany();
+  await prisma.searchAnalytics.deleteMany();
+  await prisma.savedSearch.deleteMany();
+  await prisma.emailCampaignSubscriber.deleteMany();
+  await prisma.emailSubscription.deleteMany();
+  await prisma.emailCampaign.deleteMany();
+  await prisma.apiKey.deleteMany();
+  await prisma.socialLogin.deleteMany();
+  await prisma.user.deleteMany();
+  await prisma.product.deleteMany();
+  await prisma.collection.deleteMany();
+  await prisma.category.deleteMany();
+  await prisma.brand.deleteMany();
+  await prisma.vendor.deleteMany();
+  await prisma.file.deleteMany();
+  await prisma.siteSetting.deleteMany();
+  await prisma.taxRate.deleteMany();
+  await prisma.shippingMethod.deleteMany();
+  await prisma.shippingZone.deleteMany();
+  await prisma.coupon.deleteMany();
+  await prisma.address.deleteMany();
+  await prisma.attribute.deleteMany();
+  await prisma.analytics.deleteMany();
+  await prisma.productQuestion.deleteMany();
+  
+  console.log('Existing data deleted.');
 }
 
 main()

@@ -1,7 +1,7 @@
 // lib/actions/auth.ts
 "use server"
 
-import { signIn, signOut, auth } from "@/lib/auth/auth"
+import { signIn, signOut, auth } from "@/auth"
 import { prisma } from "@/lib/prisma"
 import bcrypt from "bcryptjs"
 import { z } from "zod"
