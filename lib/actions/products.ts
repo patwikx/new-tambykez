@@ -1,8 +1,6 @@
 "use server"
 
-
 import { prisma } from "@/lib/prisma"
-
 
 export interface ProductWithDetails {
   id: string
@@ -158,6 +156,71 @@ export async function getCategories(): Promise<CategoryWithCount[]> {
     }))
   } catch (error) {
     console.error("Error fetching categories:", error)
+    return []
+  }
+}
+
+export async function getAllProducts(): Promise<
+  {
+    id: string
+    name: string
+    price: number
+    stock: number
+    category: string
+    brand: string
+    status: string // Changed from isActive: boolean to status: string
+  }[]
+> {
+  try {
+    const products = await prisma.product.findMany({
+      where: {
+        deletedAt: null,
+      },
+      include: {
+        brand: {
+          select: {
+            name: true,
+          },
+        },
+        categories: {
+          include: {
+            category: {
+              select: {
+                name: true,
+              },
+            },
+          },
+          take: 1, // Get primary category
+        },
+        variants: {
+          select: {
+            price: true,
+            inventory: true,
+          },
+          where: {
+            isActive: true,
+            deletedAt: null,
+            isDefault: true,
+          },
+          take: 1,
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    })
+
+    return products.map((product) => ({
+      id: product.id,
+      name: product.name,
+      price: product.variants[0]?.price || 0,
+      stock: product.variants[0]?.inventory || 0,
+      category: product.categories[0]?.category.name || "Uncategorized",
+      brand: product.brand.name,
+      status: product.status, // Return actual status from database instead of isActive
+    }))
+  } catch (error) {
+    console.error("Error fetching all products:", error)
     return []
   }
 }

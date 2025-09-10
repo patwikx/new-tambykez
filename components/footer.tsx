@@ -54,7 +54,7 @@ export default function Footer() {
                 color: "#FF6B35",
               }}
             >
-              MOTOGEAR
+              TAMBYKEZ
             </Typography>
             <Typography variant="body2" sx={{ mb: 3, lineHeight: 1.6, color: "#ccc" }}>
               Your trusted partner for premium motorcycle gear. We provide top-quality safety equipment and accessories
@@ -263,7 +263,7 @@ export default function Footer() {
               <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
                 <Email sx={{ color: "#FF6B35", mr: 2 }} />
                 <Typography variant="body2" sx={{ color: "#ccc" }}>
-                  support@motogear.com
+                  support@tambykez.com
                 </Typography>
               </Box>
             </Box>
@@ -271,7 +271,7 @@ export default function Footer() {
               <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
                 <Phone sx={{ color: "#FF6B35", mr: 2 }} />
                 <Typography variant="body2" sx={{ color: "#ccc" }}>
-                  1-800-MOTOGEAR
+                  1-800-TAMBYKEZ
                 </Typography>
               </Box>
             </Box>
@@ -279,7 +279,7 @@ export default function Footer() {
               <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
                 <LocationOn sx={{ color: "#FF6B35", mr: 2 }} />
                 <Typography variant="body2" sx={{ color: "#ccc" }}>
-                  Los Angeles, CA
+                  General Santos City, Philippines
                 </Typography>
               </Box>
             </Box>
@@ -291,7 +291,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 2 }}>
           <Typography variant="body2" sx={{ color: "#999" }}>
-            © 2024 MotoGear Pro. All rights reserved.
+            © 2025 Tambykez - Gensan. All rights reserved.
           </Typography>
           <Box sx={{ display: "flex", gap: 3 }}>
             <MuiLink

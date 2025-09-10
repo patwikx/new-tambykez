@@ -92,7 +92,7 @@ export default function Header({ categories, brands }: HeaderProps) {
                   transition: "color 0.3s ease",
                 }}
               >
-                MOTOGEAR
+                TAMBYKEZ
               </Typography>
             </Link>
 
@@ -113,7 +113,7 @@ export default function Header({ categories, brands }: HeaderProps) {
                     },
                   }}
                 >
-                  Categories
+                  Collections
                 </Button>
                 <Button
                   color="inherit"
@@ -327,7 +327,7 @@ export default function Header({ categories, brands }: HeaderProps) {
         <Box sx={{ p: 2, borderBottom: "1px solid #333" }}>
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <Typography variant="h6" sx={{ fontWeight: 900, textTransform: "uppercase" }}>
-              MOTOGEAR
+              TAMBYKEZ
             </Typography>
             <IconButton onClick={() => setMobileMenuOpen(false)} sx={{ color: "white" }}>
               <Close />

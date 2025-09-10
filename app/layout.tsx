@@ -20,35 +20,35 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "MotoGear Pro - Premium Motorcycle Gear & Accessories",
+  title: "Tambykez - Premium Motorcycle Gear & Accessories",
   description:
     "Discover premium motorcycle gear, helmets, jackets, gloves, and accessories. Shop the latest in motorcycle safety and style with fast shipping and expert support.",
   keywords:
     "motorcycle gear, motorcycle helmets, motorcycle jackets, motorcycle gloves, motorcycle accessories, bike gear, riding gear",
-  authors: [{ name: "MotoGear Pro" }],
-  creator: "MotoGear Pro",
-  publisher: "MotoGear Pro",
+  authors: [{ name: "Tambykez" }],
+  creator: "Tambykez",
+  publisher: "Tambykez",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://motogear-pro.com"),
+  metadataBase: new URL("https://tambykez.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "MotoGear Pro - Premium Motorcycle Gear & Accessories",
+    title: "Tambykez - Premium Motorcycle Gear & Accessories",
     description:
       "Discover premium motorcycle gear, helmets, jackets, gloves, and accessories. Shop the latest in motorcycle safety and style.",
-    url: "https://motogear-pro.com",
-    siteName: "MotoGear Pro",
+    url: "https://tambykez.com",
+    siteName: "Tambykez",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "MotoGear Pro - Premium Motorcycle Gear & Accessories",
+    title: "Tambykez - Premium Motorcycle Gear & Accessories",
     description:
       "Discover premium motorcycle gear, helmets, jackets, gloves, and accessories. Shop the latest in motorcycle safety and style.",
     creator: "@motogear_pro",

@@ -116,7 +116,7 @@ export default async function Home() {
                 FREE SHIPPING
               </Typography>
               <Typography variant="body2" sx={{ opacity: 0.8 }}>
-                On orders over $99
+                On orders over ₱99
               </Typography>
             </Box>
             <Box sx={{ textAlign: "center", flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 22%" } }}>
@@ -317,7 +317,7 @@ export default async function Home() {
                           fontSize: "1.1rem",
                         }}
                       >
-                        ${product.variants?.find((v) => v.isDefault)?.price || product.variants?.[0]?.price || 0}
+                        ₱{product.variants?.find((v) => v.isDefault)?.price || product.variants?.[0]?.price.toFixed(2) || 0}
                       </Typography>
                       {product.variants?.find((v) => v.isDefault)?.compareAtPrice && (
                         <Typography
@@ -327,7 +327,7 @@ export default async function Home() {
                             textDecoration: "line-through",
                           }}
                         >
-                          ${product.variants.find((v) => v.isDefault)?.compareAtPrice}
+                          ₱{product.variants.find((v) => v.isDefault)?.compareAtPrice}
                         </Typography>
                       )}
                     </Box>
