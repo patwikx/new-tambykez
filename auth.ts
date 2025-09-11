@@ -208,24 +208,33 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         token.role = user.role as UserRole
         token.isActive = user.isActive as boolean
         token.hasGoogleOAuth = (user as ExtendedUser).hasGoogleOAuth || false
+        token.firstName = (user as ExtendedUser).firstName
+        token.lastName = (user as ExtendedUser).lastName
+        token.email = user.email
       }
 
-      // Refresh user data on update trigger
       if (trigger === "update" && token.id) {
-        const dbUser = await prisma.user.findUnique({
-          where: { id: token.id as string },
-          include: {
-            socialLogins: {
-              where: { provider: "GOOGLE" },
-              select: { id: true },
+        try {
+          const dbUser = await prisma.user.findUnique({
+            where: { id: token.id as string },
+            include: {
+              socialLogins: {
+                where: { provider: "GOOGLE" },
+                select: { id: true },
+              },
             },
-          },
-        })
+          })
 
-        if (dbUser) {
-          token.role = dbUser.role
-          token.isActive = dbUser.isActive
-          token.hasGoogleOAuth = dbUser.socialLogins.length > 0
+          if (dbUser) {
+            token.role = dbUser.role
+            token.isActive = dbUser.isActive
+            token.hasGoogleOAuth = dbUser.socialLogins.length > 0
+            token.firstName = dbUser.firstName
+            token.lastName = dbUser.lastName
+            token.email = dbUser.email
+          }
+        } catch (error) {
+          console.error("Error refreshing user data:", error)
         }
       }
 
@@ -237,24 +246,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         session.user.role = token.role as UserRole
         session.user.isActive = token.isActive as boolean
         session.user.hasGoogleOAuth = token.hasGoogleOAuth as boolean
-
-        // Get fresh user data for session
-        const dbUser = await prisma.user.findUnique({
-          where: { id: token.id as string },
-          select: {
-            firstName: true,
-            lastName: true,
-            email: true,
-            isActive: true,
-          },
-        })
-
-        if (dbUser) {
-          session.user.firstName = dbUser.firstName
-          session.user.lastName = dbUser.lastName
-          session.user.email = dbUser.email
-          session.user.isActive = dbUser.isActive
-        }
+        session.user.firstName = token.firstName as string
+        session.user.lastName = token.lastName as string
+        session.user.email = token.email as string
       }
 
       return session
@@ -276,7 +270,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       })
     },
     signOut: async (message) => {
-      // Handle both token and session based signouts
       if ("token" in message && message.token?.id) {
         await prisma.securityLog.create({
           data: {

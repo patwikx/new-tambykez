@@ -5,6 +5,7 @@ import "./globals.css"
 import MaterialUIProvider from "@/components/theme-provider"
 import NavigationWrapper from "@/components/navigation-wrapper"
 import Footer from "@/components/footer"
+import SessionProviderWrapper from "@/components/session-provider"
 
 const inter = Inter({
   variable: "--font-inter",
@@ -75,9 +76,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
         <MaterialUIProvider>
-          <NavigationWrapper />
-          <main>{children}</main>
-          <Footer />
+          <SessionProviderWrapper>
+            <NavigationWrapper />
+            <main>{children}</main>
+            <Footer />
+          </SessionProviderWrapper>
         </MaterialUIProvider>
       </body>
     </html>

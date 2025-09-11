@@ -81,6 +81,16 @@ export async function credentialsSignIn(prevState: ActionResult, formData: FormD
 
     return { success: true }
   } catch (error) {
+    if (
+      error &&
+      typeof error === "object" &&
+      "digest" in error &&
+      typeof error.digest === "string" &&
+      error.digest.includes("NEXT_REDIRECT")
+    ) {
+      throw error // Re-throw redirect to allow NextAuth to handle it
+    }
+
     console.error("Sign in error:", error)
 
     if (error instanceof z.ZodError) {
@@ -185,7 +195,6 @@ export async function signUpAction(prevState: ActionResult, formData: FormData):
       },
     })
 
-    // Automatically sign in the new user
     await signIn("credentials", {
       email: validatedData.email,
       password: validatedData.password,
@@ -194,6 +203,16 @@ export async function signUpAction(prevState: ActionResult, formData: FormData):
 
     return { success: true }
   } catch (error) {
+    if (
+      error &&
+      typeof error === "object" &&
+      "digest" in error &&
+      typeof error.digest === "string" &&
+      error.digest.includes("NEXT_REDIRECT")
+    ) {
+      throw error // Re-throw redirect to allow NextAuth to handle it
+    }
+
     console.error("Sign up error:", error)
 
     if (error instanceof z.ZodError) {

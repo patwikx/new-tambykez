@@ -32,5 +32,8 @@ declare module "next-auth/jwt" {
     role: UserRole
     isActive: boolean
     hasGoogleOAuth: boolean
+    firstName?: string | null
+    lastName?: string | null
+    email?: string | null
   }
 }

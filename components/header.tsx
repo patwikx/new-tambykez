@@ -21,9 +21,25 @@ import {
   useTheme,
   InputBase,
   alpha,
+  Avatar,
+  Divider,
 } from "@mui/material"
-import { Search, ShoppingCart, Person, Menu as MenuIcon, Close, Favorite, KeyboardArrowDown } from "@mui/icons-material"
+import {
+  Search,
+  ShoppingCart,
+  Person,
+  Menu as MenuIcon,
+  Close,
+  Favorite,
+  KeyboardArrowDown,
+  Login,
+  PersonAdd,
+  Logout,
+  AccountCircle,
+  Dashboard,
+} from "@mui/icons-material"
 import Link from "next/link"
+import { useSession, signOut } from "next-auth/react"
 import type { NavigationCategory, NavigationBrand } from "@/lib/actions/navigations"
 
 interface HeaderProps {
@@ -35,10 +51,15 @@ export default function Header({ categories, brands }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [categoriesAnchor, setCategoriesAnchor] = useState<null | HTMLElement>(null)
   const [brandsAnchor, setBrandsAnchor] = useState<null | HTMLElement>(null)
+  const [userMenuAnchor, setUserMenuAnchor] = useState<null | HTMLElement>(null)
   const [isMounted, setIsMounted] = useState(false)
   const theme = useTheme()
   const isMobileQuery = useMediaQuery(theme.breakpoints.down("md"))
   const isMobile = isMounted ? isMobileQuery : false
+
+  const { data: session, status } = useSession()
+  const isAuthenticated = !!session
+  const isLoading = status === "loading"
 
   useEffect(() => {
     setIsMounted(true)
@@ -52,9 +73,27 @@ export default function Header({ categories, brands }: HeaderProps) {
     setBrandsAnchor(event.currentTarget)
   }
 
+  const handleUserMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setUserMenuAnchor(event.currentTarget)
+  }
+
   const handleClose = () => {
     setCategoriesAnchor(null)
     setBrandsAnchor(null)
+    setUserMenuAnchor(null)
+  }
+
+  const handleSignOut = async () => {
+    handleClose()
+    await signOut({ callbackUrl: "/" })
+  }
+
+  const getUserDisplayName = () => {
+    if (!session?.user) return ""
+    const { firstName, lastName, email } = session.user
+    if (firstName && lastName) return `${firstName} ${lastName}`
+    if (firstName) return firstName
+    return email?.split("@")[0] || "User"
   }
 
   return (
@@ -195,6 +234,7 @@ export default function Header({ categories, brands }: HeaderProps) {
 
             {/* Action Buttons */}
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              {/* Wishlist */}
               <IconButton
                 color="inherit"
                 component={Link}
@@ -209,6 +249,8 @@ export default function Header({ categories, brands }: HeaderProps) {
                   <Favorite />
                 </Badge>
               </IconButton>
+
+              {/* Cart */}
               <IconButton
                 color="inherit"
                 component={Link}
@@ -223,18 +265,75 @@ export default function Header({ categories, brands }: HeaderProps) {
                   <ShoppingCart />
                 </Badge>
               </IconButton>
-              <IconButton
-                color="inherit"
-                component={Link}
-                href="/account"
-                sx={{
-                  "&:hover": {
-                    color: "#FF6B35",
-                  },
-                }}
-              >
-                <Person />
-              </IconButton>
+
+              {isLoading ? (
+                <IconButton disabled sx={{ color: "#666" }}>
+                  <Person />
+                </IconButton>
+              ) : isAuthenticated ? (
+                <IconButton
+                  color="inherit"
+                  onClick={handleUserMenuClick}
+                  sx={{
+                    "&:hover": {
+                      color: "#FF6B35",
+                    },
+                  }}
+                >
+                  <Avatar
+                    sx={{
+                      width: 32,
+                      height: 32,
+                      bgcolor: "#FF6B35",
+                      fontSize: "0.875rem",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {getUserDisplayName().charAt(0).toUpperCase()}
+                  </Avatar>
+                </IconButton>
+              ) : (
+                <Box sx={{ display: "flex", gap: 1 }}>
+                  {!isMobile && (
+                    <Button
+                      component={Link}
+                      href="/auth/sign-in"
+                      startIcon={<Login />}
+                      sx={{
+                        color: "white",
+                        fontWeight: 600,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.5px",
+                        "&:hover": {
+                          color: "#FF6B35",
+                          bgcolor: "transparent",
+                        },
+                      }}
+                    >
+                      Sign In
+                    </Button>
+                  )}
+                  <Button
+                    component={Link}
+                    href="/auth/sign-up"
+                    variant="contained"
+                    startIcon={!isMobile ? <PersonAdd /> : undefined}
+                    sx={{
+                      bgcolor: "#FF6B35",
+                      color: "white",
+                      fontWeight: 600,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.5px",
+                      px: isMobile ? 2 : 3,
+                      "&:hover": {
+                        bgcolor: "#E55A2B",
+                      },
+                    }}
+                  >
+                    {isMobile ? <PersonAdd /> : "Sign Up"}
+                  </Button>
+                </Box>
+              )}
             </Box>
           </Toolbar>
         </Container>
@@ -401,8 +500,137 @@ export default function Header({ categories, brands }: HeaderProps) {
               />
             </ListItem>
           ))}
+          {isAuthenticated && (
+            <>
+              <Divider sx={{ borderColor: "#333", mt: 2 }} />
+              <ListItem sx={{ mt: 2 }}>
+                <ListItemText
+                  primary="MY ACCOUNT"
+                  primaryTypographyProps={{
+                    fontWeight: 700,
+                    color: "#FF6B35",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.5px",
+                  }}
+                />
+              </ListItem>
+              {session?.user?.role && ["ADMIN", "MODERATOR", "VENDOR"].includes(session.user.role) && (
+                <ListItem
+                  component={Link}
+                  href="/admin"
+                  onClick={() => setMobileMenuOpen(false)}
+                  sx={{
+                    pl: 4,
+                    "&:hover": {
+                      bgcolor: "rgba(255, 107, 53, 0.1)",
+                    },
+                  }}
+                >
+                  <ListItemText
+                    primary="Admin Dashboard"
+                    primaryTypographyProps={{
+                      fontWeight: 600,
+                    }}
+                  />
+                </ListItem>
+              )}
+              <ListItem
+                onClick={handleSignOut}
+                sx={{
+                  pl: 4,
+                  "&:hover": {
+                    bgcolor: "rgba(255, 107, 53, 0.1)",
+                  },
+                }}
+              >
+                <ListItemText
+                  primary="Sign Out"
+                  primaryTypographyProps={{
+                    fontWeight: 600,
+                  }}
+                />
+              </ListItem>
+            </>
+          )}
         </List>
       </Drawer>
+
+      {/* User Menu Dropdown */}
+      <Menu
+        anchorEl={userMenuAnchor}
+        open={Boolean(userMenuAnchor)}
+        onClose={handleClose}
+        PaperProps={{
+          sx: {
+            bgcolor: "#111111",
+            border: "1px solid #333",
+            mt: 1,
+            minWidth: 200,
+          },
+        }}
+      >
+        <Box sx={{ px: 3, py: 2, borderBottom: "1px solid #333" }}>
+          <Typography variant="subtitle2" sx={{ color: "#FF6B35", fontWeight: 600 }}>
+            {getUserDisplayName()}
+          </Typography>
+          <Typography variant="body2" sx={{ color: "#999" }}>
+            {session?.user?.email}
+          </Typography>
+        </Box>
+
+        <MenuItem
+          onClick={handleClose}
+          component={Link}
+          href="/account"
+          sx={{
+            color: "white",
+            fontWeight: 600,
+            "&:hover": {
+              bgcolor: "rgba(255, 107, 53, 0.1)",
+              color: "#FF6B35",
+            },
+          }}
+        >
+          <AccountCircle sx={{ mr: 2 }} />
+          My Account
+        </MenuItem>
+
+        {session?.user?.role && ["ADMIN", "MODERATOR", "VENDOR"].includes(session.user.role) && (
+          <MenuItem
+            onClick={handleClose}
+            component={Link}
+            href="/admin"
+            sx={{
+              color: "white",
+              fontWeight: 600,
+              "&:hover": {
+                bgcolor: "rgba(255, 107, 53, 0.1)",
+                color: "#FF6B35",
+              },
+            }}
+          >
+            <Dashboard sx={{ mr: 2 }} />
+            Admin Dashboard
+          </MenuItem>
+        )}
+
+        <Divider sx={{ borderColor: "#333" }} />
+
+        <MenuItem
+          onClick={handleSignOut}
+          sx={{
+            color: "white",
+            fontWeight: 600,
+            "&:hover": {
+              bgcolor: "rgba(255, 107, 53, 0.1)",
+              color: "#FF6B35",
+            },
+          }}
+        >
+          <Logout sx={{ mr: 2 }} />
+          Sign Out
+        </MenuItem>
+      </Menu>
     </>
   )
 }

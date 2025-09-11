@@ -2,42 +2,28 @@
 import { auth } from "@/auth"
 import { NextResponse } from "next/server"
 
-
 export default auth((req) => {
   const { pathname } = req.nextUrl
   const session = req.auth
 
   // Public routes that don't require authentication
-  const publicRoutes = [
-    "/",
-    "/products",
-    "/categories",
-    "/search",
-    "/auth/signin",
-    "/auth/signup", 
-    "/auth/error",
-    "/api/auth",
-  ]
+  const publicRoutes = ["/", "/products", "/categories", "/search", "/auth/sign-in", "/auth/sign-up", "/auth/error"]
+
+  // Allow all NextAuth API routes to pass through without middleware interference
+  if (pathname.startsWith("/api/auth/")) {
+    return NextResponse.next()
+  }
 
   // Admin/Staff only routes
-  const adminRoutes = [
-    "/admin",
-    "/dashboard",
-    "/staff",
-  ]
+  const adminRoutes = ["/admin", "/dashboard", "/staff"]
 
   // Customer only routes
-  const customerRoutes = [
-    "/profile",
-    "/orders",
-    "/wishlist",
-    "/cart",
-  ]
+  const customerRoutes = ["/profile", "/orders", "/wishlist", "/cart"]
 
-  // Check if route is public
-  const isPublicRoute = publicRoutes.some(route => 
-    pathname === route || pathname.startsWith(`${route}/`)
-  )
+  // Check if route is public (exact match or starts with route + slash)
+  const isPublicRoute = publicRoutes.some((route) => {
+    return pathname === route || (route !== "/" && pathname.startsWith(`${route}/`))
+  })
 
   // Allow access to public routes
   if (isPublicRoute) {
@@ -59,9 +45,7 @@ export default auth((req) => {
   }
 
   // Check admin routes
-  const isAdminRoute = adminRoutes.some(route => 
-    pathname.startsWith(route)
-  )
+  const isAdminRoute = adminRoutes.some((route) => pathname.startsWith(route))
 
   if (isAdminRoute) {
     const allowedRoles = ["ADMIN", "MODERATOR", "VENDOR"]
@@ -71,9 +55,7 @@ export default auth((req) => {
   }
 
   // Check customer routes
-  const isCustomerRoute = customerRoutes.some(route => 
-    pathname.startsWith(route)
-  )
+  const isCustomerRoute = customerRoutes.some((route) => pathname.startsWith(route))
 
   if (isCustomerRoute && session.user.role !== "CUSTOMER") {
     return NextResponse.redirect(new URL("/unauthorized", req.url))
