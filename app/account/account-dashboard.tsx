@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Box, Card, CardContent, Typography, Button, Avatar, Chip, Skeleton } from "@mui/material"
 import { LocationOn, ShoppingBag, Favorite, Settings, Security, ArrowForward } from "@mui/icons-material"
 import Link from "next/link"
-import { getUserProfile, getUserOrders, type UserProfile, type UserOrder } from "@/lib/actions/user-actions"
+import { getUserProfile, getUserOrders, type UserProfile, UserOrder } from "@/lib/actions/user-actions"
 import { getWishlistItems } from "@/lib/actions/wishlist-actions"
 import { useAuth } from "@/hooks/use-auth"
 

@@ -52,12 +52,12 @@ export default function ProductGrid({
             variant="h2"
             sx={{
               fontSize: { xs: "2rem", md: "3rem" },
-              fontWeight: 900,
+              fontWeight: 700,
               textAlign: "center",
               mb: 6,
               textTransform: "uppercase",
               letterSpacing: "-0.02em",
-              color: "white",
+              color: "#333",
             }}
           >
             {title}
@@ -101,12 +101,12 @@ export default function ProductGrid({
             variant="h2"
             sx={{
               fontSize: { xs: "2rem", md: "3rem" },
-              fontWeight: 900,
+              fontWeight: 700,
               textAlign: "center",
               mb: 6,
               textTransform: "uppercase",
               letterSpacing: "-0.02em",
-              color: "white",
+              color: "#333",
             }}
           >
             {title}
@@ -131,12 +131,12 @@ export default function ProductGrid({
           variant="h2"
           sx={{
             fontSize: { xs: "2rem", md: "3rem" },
-            fontWeight: 900,
+            fontWeight: 700,
             textAlign: "center",
             mb: 6,
             textTransform: "uppercase",
             letterSpacing: "-0.02em",
-            color: "white",
+            color: "#333",
           }}
         >
           {title}

@@ -1,18 +1,20 @@
 import { Box, Container, Typography, Button, Card, CardContent, CardMedia, Rating } from "@mui/material"
 import { ArrowForward, LocalShipping, Security, Support, Star } from "@mui/icons-material"
 import { getFeaturedProducts, getCategories } from "@/lib/actions/products"
+import Link from "next/link"
 
 export default async function Home() {
   const [featuredProducts, categories] = await Promise.all([getFeaturedProducts(), getCategories()])
 
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "#000000", color: "white" }}>
+    <Box sx={{ minHeight: "100vh", bgcolor: "#f8f9fa" }}>
       {/* Hero Section */}
       <Box
         sx={{
           position: "relative",
-          height: "80vh",
-          backgroundImage: "url(/placeholder.svg?height=800&width=1200&query=motorcycle rider on dark road with gear)",
+          height: "70vh",
+          backgroundImage:
+            "url(/placeholder.svg?height=800&width=1200&query=professional business equipment and tools)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "flex",
@@ -24,7 +26,7 @@ export default async function Home() {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            backgroundColor: "rgba(0, 0, 0, 0.4)",
             zIndex: 1,
           },
         }}
@@ -35,14 +37,15 @@ export default async function Home() {
               variant="h1"
               sx={{
                 fontSize: { xs: "2.5rem", md: "4rem" },
-                fontWeight: 900,
+                fontWeight: 700,
                 letterSpacing: "-0.02em",
                 lineHeight: 1.1,
                 mb: 3,
+                color: "white",
                 textTransform: "uppercase",
               }}
             >
-              GEAR UP FOR THE RIDE
+              PROFESSIONAL EQUIPMENT
             </Typography>
             <Typography
               variant="h5"
@@ -51,19 +54,21 @@ export default async function Home() {
                 fontWeight: 400,
                 lineHeight: 1.5,
                 mb: 4,
+                color: "white",
                 opacity: 0.9,
               }}
             >
-              Premium motorcycle gear from the world&apos;s leading brands. Protection, performance, and style for every
-              rider.
+              Quality tools and equipment from trusted brands. Professional solutions for every industry need.
             </Typography>
             <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
               <Button
                 variant="contained"
                 size="large"
                 endIcon={<ArrowForward />}
+                component={Link}
+                href="/products"
                 sx={{
-                  bgcolor: "#FF6B35",
+                  bgcolor: "#DC143C",
                   color: "white",
                   px: 4,
                   py: 1.5,
@@ -72,7 +77,7 @@ export default async function Home() {
                   textTransform: "uppercase",
                   letterSpacing: "0.5px",
                   "&:hover": {
-                    bgcolor: "#E55A2B",
+                    bgcolor: "#B91C3C",
                     transform: "translateY(-2px)",
                   },
                   transition: "all 0.3s ease",
@@ -83,6 +88,8 @@ export default async function Home() {
               <Button
                 variant="outlined"
                 size="large"
+                component={Link}
+                href="/catalog"
                 sx={{
                   borderColor: "white",
                   color: "white",
@@ -93,9 +100,9 @@ export default async function Home() {
                   textTransform: "uppercase",
                   letterSpacing: "0.5px",
                   "&:hover": {
-                    borderColor: "#FF6B35",
-                    color: "#FF6B35",
-                    bgcolor: "rgba(255, 107, 53, 0.1)",
+                    borderColor: "#DC143C",
+                    color: "#DC143C",
+                    bgcolor: "rgba(220, 20, 60, 0.1)",
                   },
                 }}
               >
@@ -107,42 +114,42 @@ export default async function Home() {
       </Box>
 
       {/* Features Section */}
-      <Box sx={{ py: 6, bgcolor: "#111111" }}>
+      <Box sx={{ py: 6, bgcolor: "white" }}>
         <Container maxWidth="lg">
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4, justifyContent: "center" }}>
             <Box sx={{ textAlign: "center", flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 22%" } }}>
-              <LocalShipping sx={{ fontSize: 48, color: "#FF6B35", mb: 2 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, textTransform: "uppercase" }}>
+              <LocalShipping sx={{ fontSize: 48, color: "#DC143C", mb: 2 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, textTransform: "uppercase", color: "#333" }}>
                 FREE SHIPPING
               </Typography>
-              <Typography variant="body2" sx={{ opacity: 0.8 }}>
-                On orders over ₱99
+              <Typography variant="body2" sx={{ color: "#666" }}>
+                On orders over ₱2500
               </Typography>
             </Box>
             <Box sx={{ textAlign: "center", flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 22%" } }}>
-              <Security sx={{ fontSize: 48, color: "#FF6B35", mb: 2 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, textTransform: "uppercase" }}>
+              <Security sx={{ fontSize: 48, color: "#DC143C", mb: 2 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, textTransform: "uppercase", color: "#333" }}>
                 SECURE PAYMENT
               </Typography>
-              <Typography variant="body2" sx={{ opacity: 0.8 }}>
+              <Typography variant="body2" sx={{ color: "#666" }}>
                 100% secure checkout
               </Typography>
             </Box>
             <Box sx={{ textAlign: "center", flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 22%" } }}>
-              <Support sx={{ fontSize: 48, color: "#FF6B35", mb: 2 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, textTransform: "uppercase" }}>
-                24/7 SUPPORT
+              <Support sx={{ fontSize: 48, color: "#DC143C", mb: 2 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, textTransform: "uppercase", color: "#333" }}>
+                EXPERT SUPPORT
               </Typography>
-              <Typography variant="body2" sx={{ opacity: 0.8 }}>
-                Expert customer service
+              <Typography variant="body2" sx={{ color: "#666" }}>
+                Professional customer service
               </Typography>
             </Box>
             <Box sx={{ textAlign: "center", flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 22%" } }}>
-              <Star sx={{ fontSize: 48, color: "#FF6B35", mb: 2 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, textTransform: "uppercase" }}>
-                PREMIUM BRANDS
+              <Star sx={{ fontSize: 48, color: "#DC143C", mb: 2 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, textTransform: "uppercase", color: "#333" }}>
+                QUALITY BRANDS
               </Typography>
-              <Typography variant="body2" sx={{ opacity: 0.8 }}>
+              <Typography variant="body2" sx={{ color: "#666" }}>
                 Authorized dealer
               </Typography>
             </Box>
@@ -151,17 +158,18 @@ export default async function Home() {
       </Box>
 
       {/* Categories Section */}
-      <Box sx={{ py: 8 }}>
+      <Box sx={{ py: 8, bgcolor: "#f8f9fa" }}>
         <Container maxWidth="lg">
           <Typography
             variant="h2"
             sx={{
               fontSize: { xs: "2rem", md: "3rem" },
-              fontWeight: 900,
+              fontWeight: 700,
               textAlign: "center",
               mb: 6,
               textTransform: "uppercase",
               letterSpacing: "-0.02em",
+              color: "#333",
             }}
           >
             SHOP BY CATEGORY
@@ -170,25 +178,28 @@ export default async function Home() {
             {categories.map((category) => (
               <Box key={category.id} sx={{ flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 30%" } }}>
                 <Card
+                  component={Link}
+                  href={`/categories/${category.id}`}
                   sx={{
-                    bgcolor: "#111111",
-                    border: "1px solid #333",
+                    bgcolor: "white",
+                    border: "1px solid #e0e0e0",
                     borderRadius: 2,
                     overflow: "hidden",
                     cursor: "pointer",
                     transition: "all 0.3s ease",
                     height: "100%",
+                    textDecoration: "none",
                     "&:hover": {
-                      transform: "translateY(-8px)",
-                      borderColor: "#FF6B35",
-                      boxShadow: "0 20px 40px rgba(255, 107, 53, 0.2)",
+                      transform: "translateY(-4px)",
+                      borderColor: "#DC143C",
+                      boxShadow: "0 8px 25px rgba(220, 20, 60, 0.15)",
                     },
                   }}
                 >
                   <CardMedia
                     component="img"
                     height="200"
-                    image={category.image || "/motorcycle-gear-category.jpg"}
+                    image={category.image || "/placeholder-onpo7.png"}
                     alt={category.name}
                     sx={{ objectFit: "cover" }}
                   />
@@ -196,8 +207,8 @@ export default async function Home() {
                     <Typography
                       variant="h6"
                       sx={{
-                        fontWeight: 700,
-                        color: "white",
+                        fontWeight: 600,
+                        color: "#333",
                         textTransform: "uppercase",
                         letterSpacing: "0.5px",
                         mb: 1,
@@ -205,7 +216,7 @@ export default async function Home() {
                     >
                       {category.name}
                     </Typography>
-                    <Typography variant="body2" sx={{ color: "#999" }}>
+                    <Typography variant="body2" sx={{ color: "#666" }}>
                       {category.productCount} products
                     </Typography>
                   </CardContent>
@@ -217,17 +228,18 @@ export default async function Home() {
       </Box>
 
       {/* Featured Products Section */}
-      <Box sx={{ py: 8, bgcolor: "#111111" }}>
+      <Box sx={{ py: 8, bgcolor: "white" }}>
         <Container maxWidth="lg">
           <Typography
             variant="h2"
             sx={{
               fontSize: { xs: "2rem", md: "3rem" },
-              fontWeight: 900,
+              fontWeight: 700,
               textAlign: "center",
               mb: 6,
               textTransform: "uppercase",
               letterSpacing: "-0.02em",
+              color: "#333",
             }}
           >
             FEATURED PRODUCTS
@@ -237,8 +249,8 @@ export default async function Home() {
               <Box key={product.id} sx={{ flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 22%" } }}>
                 <Card
                   sx={{
-                    bgcolor: "#000000",
-                    border: "1px solid #333",
+                    bgcolor: "white",
+                    border: "1px solid #e0e0e0",
                     borderRadius: 2,
                     overflow: "hidden",
                     cursor: "pointer",
@@ -247,17 +259,17 @@ export default async function Home() {
                     display: "flex",
                     flexDirection: "column",
                     "&:hover": {
-                      transform: "translateY(-8px)",
-                      borderColor: "#FF6B35",
-                      boxShadow: "0 20px 40px rgba(255, 107, 53, 0.2)",
+                      transform: "translateY(-4px)",
+                      borderColor: "#DC143C",
+                      boxShadow: "0 8px 25px rgba(220, 20, 60, 0.15)",
                     },
                   }}
                 >
                   <Box sx={{ position: "relative" }}>
                     <CardMedia
                       component="img"
-                      height="300"
-                      image={product.images?.[0] || "/motorcycle-gear-product.jpg"}
+                      height="250"
+                      image={product.images?.[0] || "/placeholder-3qhpg.png"}
                       alt={product.name}
                       sx={{ objectFit: "cover" }}
                     />
@@ -266,7 +278,7 @@ export default async function Home() {
                     <Typography
                       variant="body2"
                       sx={{
-                        color: "#FF6B35",
+                        color: "#DC143C",
                         fontWeight: 600,
                         textTransform: "uppercase",
                         letterSpacing: "0.5px",
@@ -277,9 +289,11 @@ export default async function Home() {
                     </Typography>
                     <Typography
                       variant="h6"
+                      component={Link}
+                      href={`/products/${product.id}`}
                       sx={{
                         fontWeight: 600,
-                        color: "white",
+                        color: "#333",
                         mb: 2,
                         fontSize: "0.95rem",
                         lineHeight: 1.3,
@@ -288,6 +302,10 @@ export default async function Home() {
                         display: "-webkit-box",
                         WebkitLineClamp: 2,
                         WebkitBoxOrient: "vertical",
+                        textDecoration: "none",
+                        "&:hover": {
+                          color: "#DC143C",
+                        },
                       }}
                     >
                       {product.name}
@@ -300,11 +318,11 @@ export default async function Home() {
                         size="small"
                         sx={{
                           "& .MuiRating-iconFilled": {
-                            color: "#FF6B35",
+                            color: "#DC143C",
                           },
                         }}
                       />
-                      <Typography variant="body2" sx={{ color: "#999", ml: 1 }}>
+                      <Typography variant="body2" sx={{ color: "#666", ml: 1 }}>
                         ({product.reviewCount})
                       </Typography>
                     </Box>
@@ -313,17 +331,20 @@ export default async function Home() {
                         variant="h6"
                         sx={{
                           fontWeight: 700,
-                          color: "#FF6B35",
+                          color: "#DC143C",
                           fontSize: "1.1rem",
                         }}
                       >
-                        ₱{product.variants?.find((v) => v.isDefault)?.price || product.variants?.[0]?.price.toFixed(2) || 0}
+                        ₱
+                        {product.variants?.find((v) => v.isDefault)?.price ||
+                          product.variants?.[0]?.price.toFixed(2) ||
+                          0}
                       </Typography>
                       {product.variants?.find((v) => v.isDefault)?.compareAtPrice && (
                         <Typography
                           variant="body2"
                           sx={{
-                            color: "#666",
+                            color: "#999",
                             textDecoration: "line-through",
                           }}
                         >
@@ -341,9 +362,11 @@ export default async function Home() {
               variant="outlined"
               size="large"
               endIcon={<ArrowForward />}
+              component={Link}
+              href="/products"
               sx={{
-                borderColor: "#FF6B35",
-                color: "#FF6B35",
+                borderColor: "#DC143C",
+                color: "#DC143C",
                 px: 4,
                 py: 1.5,
                 fontSize: "1.1rem",
@@ -351,8 +374,8 @@ export default async function Home() {
                 textTransform: "uppercase",
                 letterSpacing: "0.5px",
                 "&:hover": {
-                  borderColor: "#FF6B35",
-                  bgcolor: "rgba(255, 107, 53, 0.1)",
+                  borderColor: "#DC143C",
+                  bgcolor: "rgba(220, 20, 60, 0.1)",
                 },
               }}
             >
@@ -363,21 +386,21 @@ export default async function Home() {
       </Box>
 
       {/* Newsletter Section */}
-      <Box sx={{ py: 8, bgcolor: "#FF6B35" }}>
+      <Box sx={{ py: 8, bgcolor: "#DC143C" }}>
         <Container maxWidth="md">
           <Box sx={{ textAlign: "center" }}>
             <Typography
               variant="h3"
               sx={{
                 fontSize: { xs: "1.8rem", md: "2.5rem" },
-                fontWeight: 900,
+                fontWeight: 700,
                 color: "white",
                 mb: 2,
                 textTransform: "uppercase",
                 letterSpacing: "-0.02em",
               }}
             >
-              STAY IN THE LOOP
+              STAY UPDATED
             </Typography>
             <Typography
               variant="h6"
@@ -388,14 +411,14 @@ export default async function Home() {
                 fontWeight: 400,
               }}
             >
-              Get the latest gear updates, exclusive deals, and riding tips delivered to your inbox.
+              Get the latest product updates, exclusive deals, and industry insights delivered to your inbox.
             </Typography>
             <Button
               variant="contained"
               size="large"
               sx={{
                 bgcolor: "white",
-                color: "#FF6B35",
+                color: "#DC143C",
                 px: 4,
                 py: 1.5,
                 fontSize: "1.1rem",
