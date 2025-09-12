@@ -4,42 +4,42 @@ import Link from "next/link"
 
 const footerLinks = {
   products: [
-    { name: "Safety Equipment", href: "/categories/safety" },
-    { name: "Power Tools", href: "/categories/power-tools" },
-    { name: "Hand Tools", href: "/categories/hand-tools" },
-    { name: "Industrial Supplies", href: "/categories/industrial" },
-    { name: "Electrical", href: "/categories/electrical" },
-    { name: "Plumbing", href: "/categories/plumbing" },
+    { name: "Helmets", href: "/categories/helmets" },
+    { name: "Jackets", href: "/categories/jackets" },
+    { name: "Gloves", href: "/categories/gloves" },
+    { name: "Boots", href: "/categories/boots" },
+    { name: "Protection", href: "/categories/protection" },
+    { name: "Accessories", href: "/categories/accessories" },
   ],
-  services: [
-    { name: "Equipment Rental", href: "/services/rental" },
-    { name: "Bulk Orders", href: "/services/bulk" },
-    { name: "Custom Solutions", href: "/services/custom" },
-    { name: "Technical Support", href: "/services/support" },
-    { name: "Training", href: "/services/training" },
-    { name: "Maintenance", href: "/services/maintenance" },
+  brands: [
+    { name: "Shoei", href: "/brands/shoei" },
+    { name: "Alpinestars", href: "/brands/alpinestars" },
+    { name: "Dainese", href: "/brands/dainese" },
+    { name: "AGV", href: "/brands/agv" },
+    { name: "REV'IT!", href: "/brands/revit" },
+    { name: "Klim", href: "/brands/klim" },
   ],
   support: [
     { name: "Contact Us", href: "/contact" },
-    { name: "Product Manuals", href: "/manuals" },
+    { name: "Size Guide", href: "/size-guide" },
     { name: "Warranty Info", href: "/warranty" },
-    { name: "Returns", href: "/returns" },
+    { name: "Returns & Exchanges", href: "/returns" },
     { name: "FAQ", href: "/faq" },
     { name: "Track Order", href: "/track-order" },
   ],
   company: [
     { name: "About Us", href: "/about" },
+    { name: "Our Story", href: "/story" },
     { name: "Careers", href: "/careers" },
-    { name: "News", href: "/news" },
-    { name: "Testimonials", href: "/testimonials" },
-    { name: "Certifications", href: "/certifications" },
-    { name: "Locations", href: "/locations" },
+    { name: "Press", href: "/press" },
+    { name: "Reviews", href: "/reviews" },
+    { name: "Store Locator", href: "/stores" },
   ],
 }
 
 export default function Footer() {
   return (
-    <Box component="footer" sx={{ bgcolor: "#1f2937", color: "white", pt: 8, pb: 4 }}>
+    <Box component="footer" sx={{ bgcolor: "#000000", color: "white", pt: 8, pb: 4 }}>
       <Container maxWidth="lg">
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
           {/* Company Info */}
@@ -50,34 +50,35 @@ export default function Footer() {
                 fontWeight: 900,
                 letterSpacing: "-0.02em",
                 mb: 3,
-                color: "#3b82f6",
+                color: "#FF6B35",
+                textTransform: "uppercase",
               }}
             >
-              PROFESSIONAL EQUIPMENT
+              Tambykez
             </Typography>
-            <Typography variant="body2" sx={{ mb: 3, lineHeight: 1.6, color: "#d1d5db" }}>
-              Your trusted partner for quality industrial equipment, safety supplies, and professional tools. 
-              Serving businesses with excellence since 1985.
+            <Typography variant="body2" sx={{ mb: 3, lineHeight: 1.6, color: "#999" }}>
+              Your trusted partner for premium motorcycle gear and accessories in the Philippines. 
+              Ride safe, ride in style with authentic gear from the world's top brands.
             </Typography>
             
             {/* Contact Info */}
             <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 3 }}>
               <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                <Phone sx={{ color: "#dc2626", fontSize: 20 }} />
-                <Typography variant="body2" sx={{ color: "#d1d5db" }}>
-                  (555) 123-4567
+                <Phone sx={{ color: "#FF6B35", fontSize: 20 }} />
+                <Typography variant="body2" sx={{ color: "#999" }}>
+                  +63 917 123 4567
                 </Typography>
               </Box>
               <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                <Email sx={{ color: "#dc2626", fontSize: 20 }} />
-                <Typography variant="body2" sx={{ color: "#d1d5db" }}>
-                  info@professionalequipment.com
+                <Email sx={{ color: "#FF6B35", fontSize: 20 }} />
+                <Typography variant="body2" sx={{ color: "#999" }}>
+                  info@tambykez.com
                 </Typography>
               </Box>
               <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                <LocationOn sx={{ color: "#dc2626", fontSize: 20 }} />
-                <Typography variant="body2" sx={{ color: "#d1d5db" }}>
-                  123 Industrial Blvd, Business City, ST 12345
+                <LocationOn sx={{ color: "#FF6B35", fontSize: 20 }} />
+                <Typography variant="body2" sx={{ color: "#999" }}>
+                  Metro Manila, Philippines
                 </Typography>
               </Box>
             </Box>
@@ -85,10 +86,10 @@ export default function Footer() {
             <Box sx={{ display: "flex", gap: 1 }}>
               <IconButton
                 sx={{
-                  color: "#9ca3af",
+                  color: "#666",
                   "&:hover": {
-                    color: "#dc2626",
-                    bgcolor: "rgba(220, 38, 38, 0.1)",
+                    color: "#FF6B35",
+                    bgcolor: "rgba(255, 107, 53, 0.1)",
                   },
                 }}
               >
@@ -96,10 +97,10 @@ export default function Footer() {
               </IconButton>
               <IconButton
                 sx={{
-                  color: "#9ca3af",
+                  color: "#666",
                   "&:hover": {
-                    color: "#dc2626",
-                    bgcolor: "rgba(220, 38, 38, 0.1)",
+                    color: "#FF6B35",
+                    bgcolor: "rgba(255, 107, 53, 0.1)",
                   },
                 }}
               >
@@ -107,10 +108,10 @@ export default function Footer() {
               </IconButton>
               <IconButton
                 sx={{
-                  color: "#9ca3af",
+                  color: "#666",
                   "&:hover": {
-                    color: "#dc2626",
-                    bgcolor: "rgba(220, 38, 38, 0.1)",
+                    color: "#FF6B35",
+                    bgcolor: "rgba(255, 107, 53, 0.1)",
                   },
                 }}
               >
@@ -118,10 +119,10 @@ export default function Footer() {
               </IconButton>
               <IconButton
                 sx={{
-                  color: "#9ca3af",
+                  color: "#666",
                   "&:hover": {
-                    color: "#dc2626",
-                    bgcolor: "rgba(220, 38, 38, 0.1)",
+                    color: "#FF6B35",
+                    bgcolor: "rgba(255, 107, 53, 0.1)",
                   },
                 }}
               >
@@ -140,9 +141,10 @@ export default function Footer() {
                   fontWeight: 700,
                   mb: 3,
                   color: "white",
+                  textTransform: "uppercase",
                 }}
               >
-                Products
+                Categories
               </Typography>
               <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
                 {footerLinks.products.map((link) => (
@@ -151,11 +153,11 @@ export default function Footer() {
                     component={Link}
                     href={link.href}
                     sx={{
-                      color: "#d1d5db",
+                      color: "#999",
                       textDecoration: "none",
                       fontSize: "0.9rem",
                       "&:hover": {
-                        color: "#dc2626",
+                        color: "#FF6B35",
                       },
                       transition: "color 0.3s ease",
                     }}
@@ -166,7 +168,7 @@ export default function Footer() {
               </Box>
             </Box>
 
-            {/* Services Links */}
+            {/* Brands Links */}
             <Box sx={{ flex: { xs: "1 1 50%", md: "1 1 25%" } }}>
               <Typography
                 variant="h6"
@@ -174,22 +176,23 @@ export default function Footer() {
                   fontWeight: 700,
                   mb: 3,
                   color: "white",
+                  textTransform: "uppercase",
                 }}
               >
-                Services
+                Brands
               </Typography>
               <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
-                {footerLinks.services.map((link) => (
+                {footerLinks.brands.map((link) => (
                   <MuiLink
                     key={link.name}
                     component={Link}
                     href={link.href}
                     sx={{
-                      color: "#d1d5db",
+                      color: "#999",
                       textDecoration: "none",
                       fontSize: "0.9rem",
                       "&:hover": {
-                        color: "#dc2626",
+                        color: "#FF6B35",
                       },
                       transition: "color 0.3s ease",
                     }}
@@ -208,6 +211,7 @@ export default function Footer() {
                   fontWeight: 700,
                   mb: 3,
                   color: "white",
+                  textTransform: "uppercase",
                 }}
               >
                 Support
@@ -219,11 +223,11 @@ export default function Footer() {
                     component={Link}
                     href={link.href}
                     sx={{
-                      color: "#d1d5db",
+                      color: "#999",
                       textDecoration: "none",
                       fontSize: "0.9rem",
                       "&:hover": {
-                        color: "#dc2626",
+                        color: "#FF6B35",
                       },
                       transition: "color 0.3s ease",
                     }}
@@ -242,6 +246,7 @@ export default function Footer() {
                   fontWeight: 700,
                   mb: 3,
                   color: "white",
+                  textTransform: "uppercase",
                 }}
               >
                 Company
@@ -253,11 +258,11 @@ export default function Footer() {
                     component={Link}
                     href={link.href}
                     sx={{
-                      color: "#d1d5db",
+                      color: "#999",
                       textDecoration: "none",
                       fontSize: "0.9rem",
                       "&:hover": {
-                        color: "#dc2626",
+                        color: "#FF6B35",
                       },
                       transition: "color 0.3s ease",
                     }}
@@ -270,23 +275,23 @@ export default function Footer() {
           </Box>
         </Box>
 
-        <Divider sx={{ my: 4, borderColor: "#374151" }} />
+        <Divider sx={{ my: 4, borderColor: "#333" }} />
 
         {/* Bottom Bar */}
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 2 }}>
-          <Typography variant="body2" sx={{ color: "#9ca3af" }}>
-            © 2025 Professional Equipment Co. All rights reserved.
+          <Typography variant="body2" sx={{ color: "#666" }}>
+            © 2025 Tambykez. All rights reserved. Ride safe, ride smart.
           </Typography>
           <Box sx={{ display: "flex", gap: 3 }}>
             <MuiLink
               component={Link}
               href="/privacy"
               sx={{
-                color: "#9ca3af",
+                color: "#666",
                 textDecoration: "none",
                 fontSize: "0.85rem",
                 "&:hover": {
-                  color: "#dc2626",
+                  color: "#FF6B35",
                 },
               }}
             >
@@ -296,11 +301,11 @@ export default function Footer() {
               component={Link}
               href="/terms"
               sx={{
-                color: "#9ca3af",
+                color: "#666",
                 textDecoration: "none",
                 fontSize: "0.85rem",
                 "&:hover": {
-                  color: "#dc2626",
+                  color: "#FF6B35",
                 },
               }}
             >
@@ -308,17 +313,17 @@ export default function Footer() {
             </MuiLink>
             <MuiLink
               component={Link}
-              href="/accessibility"
+              href="/shipping"
               sx={{
-                color: "#9ca3af",
+                color: "#666",
                 textDecoration: "none",
                 fontSize: "0.85rem",
                 "&:hover": {
-                  color: "#dc2626",
+                  color: "#FF6B35",
                 },
               }}
             >
-              Accessibility
+              Shipping Info
             </MuiLink>
           </Box>
         </Box>
