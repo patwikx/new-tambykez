@@ -1,156 +1,162 @@
-import { Box, Container, Typography, Button, Card, CardContent, CardMedia, Rating } from "@mui/material"
-import { ArrowForward, LocalShipping, Security, Support, Star } from "@mui/icons-material"
+import { Box, Container, Typography, Button, Card, CardContent, CardMedia, Rating, Grid } from "@mui/material"
+import { ArrowForward, LocalShipping, Security, Support, Star, Phone, Email, LocationOn } from "@mui/icons-material"
 import { getFeaturedProducts, getCategories } from "@/lib/actions/products"
 import Link from "next/link"
+import Image from "next/image"
 
 export default async function Home() {
   const [featuredProducts, categories] = await Promise.all([getFeaturedProducts(), getCategories()])
 
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "#f8f9fa" }}>
-      {/* Hero Section */}
+    <Box sx={{ minHeight: "100vh", bgcolor: "#ffffff" }}>
+      {/* Hero Section - Regina Style */}
       <Box
         sx={{
           position: "relative",
-          height: "70vh",
-          backgroundImage:
-            "url(/placeholder.svg?height=800&width=1200&query=professional business equipment and tools)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          height: "80vh",
+          background: "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)",
           display: "flex",
           alignItems: "center",
-          "&::before": {
-            content: '""',
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.4)",
-            zIndex: 1,
-          },
+          overflow: "hidden",
         }}
       >
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
-          <Box sx={{ maxWidth: 600 }}>
-            <Typography
-              variant="h1"
-              sx={{
-                fontSize: { xs: "2.5rem", md: "4rem" },
-                fontWeight: 700,
-                letterSpacing: "-0.02em",
-                lineHeight: 1.1,
-                mb: 3,
-                color: "white",
-                textTransform: "uppercase",
-              }}
-            >
-              PROFESSIONAL EQUIPMENT
-            </Typography>
-            <Typography
-              variant="h5"
-              sx={{
-                fontSize: { xs: "1.1rem", md: "1.3rem" },
-                fontWeight: 400,
-                lineHeight: 1.5,
-                mb: 4,
-                color: "white",
-                opacity: 0.9,
-              }}
-            >
-              Quality tools and equipment from trusted brands. Professional solutions for every industry need.
-            </Typography>
-            <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
-              <Button
-                variant="contained"
-                size="large"
-                endIcon={<ArrowForward />}
-                component={Link}
-                href="/products"
+          <Box sx={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <Box sx={{ flex: 1, color: "white" }}>
+              <Typography
+                variant="h1"
                 sx={{
-                  bgcolor: "#DC143C",
-                  color: "white",
-                  px: 4,
-                  py: 1.5,
-                  fontSize: "1.1rem",
-                  fontWeight: 600,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.5px",
-                  "&:hover": {
-                    bgcolor: "#B91C3C",
-                    transform: "translateY(-2px)",
-                  },
-                  transition: "all 0.3s ease",
+                  fontSize: { xs: "2.5rem", md: "4rem" },
+                  fontWeight: 700,
+                  lineHeight: 1.1,
+                  mb: 3,
+                  textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
                 }}
               >
-                SHOP NOW
-              </Button>
-              <Button
-                variant="outlined"
-                size="large"
-                component={Link}
-                href="/catalog"
+                Professional Equipment & Supplies
+              </Typography>
+              <Typography
+                variant="h5"
                 sx={{
-                  borderColor: "white",
-                  color: "white",
-                  px: 4,
-                  py: 1.5,
-                  fontSize: "1.1rem",
-                  fontWeight: 600,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.5px",
-                  "&:hover": {
-                    borderColor: "#DC143C",
-                    color: "#DC143C",
-                    bgcolor: "rgba(220, 20, 60, 0.1)",
-                  },
+                  fontSize: { xs: "1.1rem", md: "1.3rem" },
+                  fontWeight: 400,
+                  lineHeight: 1.5,
+                  mb: 4,
+                  opacity: 0.95,
                 }}
               >
-                VIEW CATALOG
-              </Button>
+                Your trusted partner for quality industrial equipment, safety supplies, and professional tools. 
+                Serving businesses with excellence since 1985.
+              </Typography>
+              <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
+                <Button
+                  variant="contained"
+                  size="large"
+                  endIcon={<ArrowForward />}
+                  component={Link}
+                  href="/products"
+                  sx={{
+                    bgcolor: "#dc2626",
+                    color: "white",
+                    px: 4,
+                    py: 1.5,
+                    fontSize: "1.1rem",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.5px",
+                    boxShadow: "0 4px 12px rgba(220, 38, 38, 0.3)",
+                    "&:hover": {
+                      bgcolor: "#b91c1c",
+                      transform: "translateY(-2px)",
+                      boxShadow: "0 6px 16px rgba(220, 38, 38, 0.4)",
+                    },
+                    transition: "all 0.3s ease",
+                  }}
+                >
+                  Shop Now
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="large"
+                  component={Link}
+                  href="/catalog"
+                  sx={{
+                    borderColor: "white",
+                    color: "white",
+                    px: 4,
+                    py: 1.5,
+                    fontSize: "1.1rem",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.5px",
+                    borderWidth: 2,
+                    "&:hover": {
+                      borderColor: "#dc2626",
+                      bgcolor: "#dc2626",
+                      color: "white",
+                    },
+                  }}
+                >
+                  Request Quote
+                </Button>
+              </Box>
+            </Box>
+            <Box sx={{ flex: 1, display: { xs: "none", md: "block" } }}>
+              <Image
+                src="https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="Professional Equipment"
+                width={600}
+                height={400}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: "12px",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+                }}
+              />
             </Box>
           </Box>
         </Container>
       </Box>
 
-      {/* Features Section */}
-      <Box sx={{ py: 6, bgcolor: "white" }}>
+      {/* Trust Indicators */}
+      <Box sx={{ py: 6, bgcolor: "#f8fafc" }}>
         <Container maxWidth="lg">
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4, justifyContent: "center" }}>
             <Box sx={{ textAlign: "center", flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 22%" } }}>
-              <LocalShipping sx={{ fontSize: 48, color: "#DC143C", mb: 2 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, textTransform: "uppercase", color: "#333" }}>
+              <LocalShipping sx={{ fontSize: 48, color: "#dc2626", mb: 2 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, color: "#1f2937" }}>
                 FREE SHIPPING
               </Typography>
-              <Typography variant="body2" sx={{ color: "#666" }}>
-                On orders over ₱2500
+              <Typography variant="body2" sx={{ color: "#6b7280" }}>
+                On orders over $500
               </Typography>
             </Box>
             <Box sx={{ textAlign: "center", flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 22%" } }}>
-              <Security sx={{ fontSize: 48, color: "#DC143C", mb: 2 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, textTransform: "uppercase", color: "#333" }}>
-                SECURE PAYMENT
+              <Security sx={{ fontSize: 48, color: "#dc2626", mb: 2 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, color: "#1f2937" }}>
+                SECURE ORDERING
               </Typography>
-              <Typography variant="body2" sx={{ color: "#666" }}>
-                100% secure checkout
+              <Typography variant="body2" sx={{ color: "#6b7280" }}>
+                SSL encrypted checkout
               </Typography>
             </Box>
             <Box sx={{ textAlign: "center", flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 22%" } }}>
-              <Support sx={{ fontSize: 48, color: "#DC143C", mb: 2 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, textTransform: "uppercase", color: "#333" }}>
+              <Support sx={{ fontSize: 48, color: "#dc2626", mb: 2 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, color: "#1f2937" }}>
                 EXPERT SUPPORT
               </Typography>
-              <Typography variant="body2" sx={{ color: "#666" }}>
-                Professional customer service
+              <Typography variant="body2" sx={{ color: "#6b7280" }}>
+                Professional consultation
               </Typography>
             </Box>
             <Box sx={{ textAlign: "center", flex: { xs: "1 1 100%", sm: "1 1 45%", md: "1 1 22%" } }}>
-              <Star sx={{ fontSize: 48, color: "#DC143C", mb: 2 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, textTransform: "uppercase", color: "#333" }}>
+              <Star sx={{ fontSize: 48, color: "#dc2626", mb: 2 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, color: "#1f2937" }}>
                 QUALITY BRANDS
               </Typography>
-              <Typography variant="body2" sx={{ color: "#666" }}>
-                Authorized dealer
+              <Typography variant="body2" sx={{ color: "#6b7280" }}>
+                Authorized distributor
               </Typography>
             </Box>
           </Box>
@@ -158,7 +164,7 @@ export default async function Home() {
       </Box>
 
       {/* Categories Section */}
-      <Box sx={{ py: 8, bgcolor: "#f8f9fa" }}>
+      <Box sx={{ py: 8, bgcolor: "white" }}>
         <Container maxWidth="lg">
           <Typography
             variant="h2"
@@ -166,13 +172,22 @@ export default async function Home() {
               fontSize: { xs: "2rem", md: "3rem" },
               fontWeight: 700,
               textAlign: "center",
-              mb: 6,
-              textTransform: "uppercase",
-              letterSpacing: "-0.02em",
-              color: "#333",
+              mb: 2,
+              color: "#1f2937",
             }}
           >
-            SHOP BY CATEGORY
+            Shop by Category
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              textAlign: "center",
+              mb: 6,
+              color: "#6b7280",
+              fontSize: "1.1rem",
+            }}
+          >
+            Find exactly what you need from our comprehensive selection
           </Typography>
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, justifyContent: "center" }}>
             {categories.map((category) => (
@@ -182,8 +197,8 @@ export default async function Home() {
                   href={`/categories/${category.id}`}
                   sx={{
                     bgcolor: "white",
-                    border: "1px solid #e0e0e0",
-                    borderRadius: 2,
+                    border: "1px solid #e5e7eb",
+                    borderRadius: 3,
                     overflow: "hidden",
                     cursor: "pointer",
                     transition: "all 0.3s ease",
@@ -191,15 +206,15 @@ export default async function Home() {
                     textDecoration: "none",
                     "&:hover": {
                       transform: "translateY(-4px)",
-                      borderColor: "#DC143C",
-                      boxShadow: "0 8px 25px rgba(220, 20, 60, 0.15)",
+                      borderColor: "#dc2626",
+                      boxShadow: "0 12px 32px rgba(220, 38, 38, 0.15)",
                     },
                   }}
                 >
                   <CardMedia
                     component="img"
                     height="200"
-                    image={category.image || "/placeholder-onpo7.png"}
+                    image={category.image || "https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=400"}
                     alt={category.name}
                     sx={{ objectFit: "cover" }}
                   />
@@ -208,16 +223,17 @@ export default async function Home() {
                       variant="h6"
                       sx={{
                         fontWeight: 600,
-                        color: "#333",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.5px",
+                        color: "#1f2937",
                         mb: 1,
                       }}
                     >
                       {category.name}
                     </Typography>
-                    <Typography variant="body2" sx={{ color: "#666" }}>
-                      {category.productCount} products
+                    <Typography variant="body2" sx={{ color: "#6b7280", mb: 2 }}>
+                      {category.description || "Professional grade equipment and supplies"}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: "#dc2626", fontWeight: 600 }}>
+                      {category.productCount} products →
                     </Typography>
                   </CardContent>
                 </Card>
@@ -228,7 +244,7 @@ export default async function Home() {
       </Box>
 
       {/* Featured Products Section */}
-      <Box sx={{ py: 8, bgcolor: "white" }}>
+      <Box sx={{ py: 8, bgcolor: "#f8fafc" }}>
         <Container maxWidth="lg">
           <Typography
             variant="h2"
@@ -236,13 +252,22 @@ export default async function Home() {
               fontSize: { xs: "2rem", md: "3rem" },
               fontWeight: 700,
               textAlign: "center",
-              mb: 6,
-              textTransform: "uppercase",
-              letterSpacing: "-0.02em",
-              color: "#333",
+              mb: 2,
+              color: "#1f2937",
             }}
           >
-            FEATURED PRODUCTS
+            Featured Products
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              textAlign: "center",
+              mb: 6,
+              color: "#6b7280",
+              fontSize: "1.1rem",
+            }}
+          >
+            Top-quality equipment trusted by professionals
           </Typography>
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4, justifyContent: "center" }}>
             {featuredProducts.map((product) => (
@@ -250,8 +275,8 @@ export default async function Home() {
                 <Card
                   sx={{
                     bgcolor: "white",
-                    border: "1px solid #e0e0e0",
-                    borderRadius: 2,
+                    border: "1px solid #e5e7eb",
+                    borderRadius: 3,
                     overflow: "hidden",
                     cursor: "pointer",
                     transition: "all 0.3s ease",
@@ -260,8 +285,8 @@ export default async function Home() {
                     flexDirection: "column",
                     "&:hover": {
                       transform: "translateY(-4px)",
-                      borderColor: "#DC143C",
-                      boxShadow: "0 8px 25px rgba(220, 20, 60, 0.15)",
+                      borderColor: "#dc2626",
+                      boxShadow: "0 12px 32px rgba(220, 38, 38, 0.15)",
                     },
                   }}
                 >
@@ -269,23 +294,39 @@ export default async function Home() {
                     <CardMedia
                       component="img"
                       height="250"
-                      image={product.images?.[0] || "/placeholder-3qhpg.png"}
+                      image={product.images?.[0] || "https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=400"}
                       alt={product.name}
                       sx={{ objectFit: "cover" }}
                     />
+                    {product.isNew && (
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          top: 12,
+                          left: 12,
+                          bgcolor: "#dc2626",
+                          color: "white",
+                          px: 2,
+                          py: 0.5,
+                          borderRadius: 1,
+                          fontSize: "0.75rem",
+                          fontWeight: 700,
+                        }}
+                      >
+                        NEW
+                      </Box>
+                    )}
                   </Box>
                   <CardContent sx={{ p: 3, flexGrow: 1, display: "flex", flexDirection: "column" }}>
                     <Typography
                       variant="body2"
                       sx={{
-                        color: "#DC143C",
+                        color: "#dc2626",
                         fontWeight: 600,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.5px",
                         mb: 1,
                       }}
                     >
-                      {product.brand?.name || "Brand"}
+                      {product.brand?.name || "Professional"}
                     </Typography>
                     <Typography
                       variant="h6"
@@ -293,7 +334,7 @@ export default async function Home() {
                       href={`/products/${product.id}`}
                       sx={{
                         fontWeight: 600,
-                        color: "#333",
+                        color: "#1f2937",
                         mb: 2,
                         fontSize: "0.95rem",
                         lineHeight: 1.3,
@@ -304,7 +345,7 @@ export default async function Home() {
                         WebkitBoxOrient: "vertical",
                         textDecoration: "none",
                         "&:hover": {
-                          color: "#DC143C",
+                          color: "#dc2626",
                         },
                       }}
                     >
@@ -318,11 +359,11 @@ export default async function Home() {
                         size="small"
                         sx={{
                           "& .MuiRating-iconFilled": {
-                            color: "#DC143C",
+                            color: "#fbbf24",
                           },
                         }}
                       />
-                      <Typography variant="body2" sx={{ color: "#666", ml: 1 }}>
+                      <Typography variant="body2" sx={{ color: "#6b7280", ml: 1 }}>
                         ({product.reviewCount})
                       </Typography>
                     </Box>
@@ -331,11 +372,11 @@ export default async function Home() {
                         variant="h6"
                         sx={{
                           fontWeight: 700,
-                          color: "#DC143C",
+                          color: "#dc2626",
                           fontSize: "1.1rem",
                         }}
                       >
-                        ₱
+                        $
                         {product.variants?.find((v) => v.isDefault)?.price ||
                           product.variants?.[0]?.price.toFixed(2) ||
                           0}
@@ -344,11 +385,11 @@ export default async function Home() {
                         <Typography
                           variant="body2"
                           sx={{
-                            color: "#999",
+                            color: "#9ca3af",
                             textDecoration: "line-through",
                           }}
                         >
-                          ₱{product.variants.find((v) => v.isDefault)?.compareAtPrice}
+                          ${product.variants.find((v) => v.isDefault)?.compareAtPrice}
                         </Typography>
                       )}
                     </Box>
@@ -365,28 +406,97 @@ export default async function Home() {
               component={Link}
               href="/products"
               sx={{
-                borderColor: "#DC143C",
-                color: "#DC143C",
+                borderColor: "#dc2626",
+                color: "#dc2626",
                 px: 4,
                 py: 1.5,
                 fontSize: "1.1rem",
                 fontWeight: 600,
                 textTransform: "uppercase",
                 letterSpacing: "0.5px",
+                borderWidth: 2,
                 "&:hover": {
-                  borderColor: "#DC143C",
-                  bgcolor: "rgba(220, 20, 60, 0.1)",
+                  borderColor: "#dc2626",
+                  bgcolor: "rgba(220, 38, 38, 0.1)",
                 },
               }}
             >
-              VIEW ALL PRODUCTS
+              View All Products
             </Button>
           </Box>
         </Container>
       </Box>
 
+      {/* Company Info Section */}
+      <Box sx={{ py: 8, bgcolor: "white" }}>
+        <Container maxWidth="lg">
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
+            <Box sx={{ flex: { xs: "1 1 100%", md: "1 1 50%" } }}>
+              <Typography
+                variant="h3"
+                sx={{
+                  fontSize: { xs: "1.8rem", md: "2.5rem" },
+                  fontWeight: 700,
+                  color: "#1f2937",
+                  mb: 3,
+                }}
+              >
+                Trusted by Professionals Since 1985
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "#6b7280",
+                  mb: 4,
+                  fontSize: "1.1rem",
+                  lineHeight: 1.7,
+                }}
+              >
+                For nearly four decades, we've been the go-to source for quality industrial equipment, 
+                safety supplies, and professional tools. Our commitment to excellence and customer service 
+                has made us a trusted partner for businesses across the region.
+              </Typography>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                  <Phone sx={{ color: "#dc2626" }} />
+                  <Typography variant="body1" sx={{ color: "#1f2937", fontWeight: 500 }}>
+                    (555) 123-4567
+                  </Typography>
+                </Box>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                  <Email sx={{ color: "#dc2626" }} />
+                  <Typography variant="body1" sx={{ color: "#1f2937", fontWeight: 500 }}>
+                    info@professionalequipment.com
+                  </Typography>
+                </Box>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                  <LocationOn sx={{ color: "#dc2626" }} />
+                  <Typography variant="body1" sx={{ color: "#1f2937", fontWeight: 500 }}>
+                    123 Industrial Blvd, Business City, ST 12345
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
+            <Box sx={{ flex: { xs: "1 1 100%", md: "1 1 50%" } }}>
+              <Image
+                src="https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="Our Facility"
+                width={600}
+                height={400}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: "12px",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                }}
+              />
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+
       {/* Newsletter Section */}
-      <Box sx={{ py: 8, bgcolor: "#DC143C" }}>
+      <Box sx={{ py: 8, bgcolor: "#1e3a8a" }}>
         <Container maxWidth="md">
           <Box sx={{ textAlign: "center" }}>
             <Typography
@@ -396,11 +506,9 @@ export default async function Home() {
                 fontWeight: 700,
                 color: "white",
                 mb: 2,
-                textTransform: "uppercase",
-                letterSpacing: "-0.02em",
               }}
             >
-              STAY UPDATED
+              Stay Updated
             </Typography>
             <Typography
               variant="h6"
@@ -411,28 +519,30 @@ export default async function Home() {
                 fontWeight: 400,
               }}
             >
-              Get the latest product updates, exclusive deals, and industry insights delivered to your inbox.
+              Get the latest product updates, industry insights, and exclusive offers delivered to your inbox.
             </Typography>
             <Button
               variant="contained"
               size="large"
               sx={{
-                bgcolor: "white",
-                color: "#DC143C",
+                bgcolor: "#dc2626",
+                color: "white",
                 px: 4,
                 py: 1.5,
                 fontSize: "1.1rem",
                 fontWeight: 700,
                 textTransform: "uppercase",
                 letterSpacing: "0.5px",
+                boxShadow: "0 4px 12px rgba(220, 38, 38, 0.3)",
                 "&:hover": {
-                  bgcolor: "#f5f5f5",
+                  bgcolor: "#b91c1c",
                   transform: "translateY(-2px)",
+                  boxShadow: "0 6px 16px rgba(220, 38, 38, 0.4)",
                 },
                 transition: "all 0.3s ease",
               }}
             >
-              SUBSCRIBE NOW
+              Subscribe Now
             </Button>
           </Box>
         </Container>

@@ -1,28 +1,28 @@
 import { Box, Container, Typography, Link as MuiLink, IconButton, Divider } from "@mui/material"
-import { Facebook, Twitter, Instagram, YouTube, Email, Phone, LocationOn } from "@mui/icons-material"
+import { Facebook, Twitter, Instagram, LinkedIn, Email, Phone, LocationOn } from "@mui/icons-material"
 import Link from "next/link"
 
 const footerLinks = {
-  shop: [
-    { name: "Helmets", href: "/categories/helmets" },
-    { name: "Jackets", href: "/categories/jackets" },
-    { name: "Pants", href: "/categories/pants" },
-    { name: "Boots", href: "/categories/boots" },
-    { name: "Gloves", href: "/categories/gloves" },
-    { name: "Accessories", href: "/categories/accessories" },
+  products: [
+    { name: "Safety Equipment", href: "/categories/safety" },
+    { name: "Power Tools", href: "/categories/power-tools" },
+    { name: "Hand Tools", href: "/categories/hand-tools" },
+    { name: "Industrial Supplies", href: "/categories/industrial" },
+    { name: "Electrical", href: "/categories/electrical" },
+    { name: "Plumbing", href: "/categories/plumbing" },
   ],
-  brands: [
-    { name: "Alpinestars", href: "/brands/alpinestars" },
-    { name: "Dainese", href: "/brands/dainese" },
-    { name: "Shoei", href: "/brands/shoei" },
-    { name: "Sidi", href: "/brands/sidi" },
-    { name: "Rev'it", href: "/brands/revit" },
-    { name: "Arai", href: "/brands/arai" },
+  services: [
+    { name: "Equipment Rental", href: "/services/rental" },
+    { name: "Bulk Orders", href: "/services/bulk" },
+    { name: "Custom Solutions", href: "/services/custom" },
+    { name: "Technical Support", href: "/services/support" },
+    { name: "Training", href: "/services/training" },
+    { name: "Maintenance", href: "/services/maintenance" },
   ],
   support: [
     { name: "Contact Us", href: "/contact" },
-    { name: "Size Guide", href: "/size-guide" },
-    { name: "Shipping Info", href: "/shipping" },
+    { name: "Product Manuals", href: "/manuals" },
+    { name: "Warranty Info", href: "/warranty" },
     { name: "Returns", href: "/returns" },
     { name: "FAQ", href: "/faq" },
     { name: "Track Order", href: "/track-order" },
@@ -30,18 +30,18 @@ const footerLinks = {
   company: [
     { name: "About Us", href: "/about" },
     { name: "Careers", href: "/careers" },
-    { name: "Press", href: "/press" },
-    { name: "Blog", href: "/blog" },
-    { name: "Reviews", href: "/reviews" },
-    { name: "Affiliate Program", href: "/affiliate" },
+    { name: "News", href: "/news" },
+    { name: "Testimonials", href: "/testimonials" },
+    { name: "Certifications", href: "/certifications" },
+    { name: "Locations", href: "/locations" },
   ],
 }
 
 export default function Footer() {
   return (
-    <Box component="footer" sx={{ bgcolor: "#111111", color: "white", pt: 6, pb: 3 }}>
+    <Box component="footer" sx={{ bgcolor: "#1f2937", color: "white", pt: 8, pb: 4 }}>
       <Container maxWidth="lg">
-        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
           {/* Company Info */}
           <Box sx={{ flex: { xs: "1 1 100%", md: "1 1 33%" } }}>
             <Typography
@@ -49,24 +49,46 @@ export default function Footer() {
               sx={{
                 fontWeight: 900,
                 letterSpacing: "-0.02em",
-                textTransform: "uppercase",
                 mb: 3,
-                color: "#FF6B35",
+                color: "#3b82f6",
               }}
             >
-              TAMBYKEZ
+              PROFESSIONAL EQUIPMENT
             </Typography>
-            <Typography variant="body2" sx={{ mb: 3, lineHeight: 1.6, color: "#ccc" }}>
-              Your trusted partner for premium motorcycle gear. We provide top-quality safety equipment and accessories
-              from the world&apos;s leading brands to keep you protected on every ride.
+            <Typography variant="body2" sx={{ mb: 3, lineHeight: 1.6, color: "#d1d5db" }}>
+              Your trusted partner for quality industrial equipment, safety supplies, and professional tools. 
+              Serving businesses with excellence since 1985.
             </Typography>
+            
+            {/* Contact Info */}
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 3 }}>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                <Phone sx={{ color: "#dc2626", fontSize: 20 }} />
+                <Typography variant="body2" sx={{ color: "#d1d5db" }}>
+                  (555) 123-4567
+                </Typography>
+              </Box>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                <Email sx={{ color: "#dc2626", fontSize: 20 }} />
+                <Typography variant="body2" sx={{ color: "#d1d5db" }}>
+                  info@professionalequipment.com
+                </Typography>
+              </Box>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                <LocationOn sx={{ color: "#dc2626", fontSize: 20 }} />
+                <Typography variant="body2" sx={{ color: "#d1d5db" }}>
+                  123 Industrial Blvd, Business City, ST 12345
+                </Typography>
+              </Box>
+            </Box>
+
             <Box sx={{ display: "flex", gap: 1 }}>
               <IconButton
                 sx={{
-                  color: "#999",
+                  color: "#9ca3af",
                   "&:hover": {
-                    color: "#FF6B35",
-                    bgcolor: "rgba(255, 107, 53, 0.1)",
+                    color: "#dc2626",
+                    bgcolor: "rgba(220, 38, 38, 0.1)",
                   },
                 }}
               >
@@ -74,10 +96,10 @@ export default function Footer() {
               </IconButton>
               <IconButton
                 sx={{
-                  color: "#999",
+                  color: "#9ca3af",
                   "&:hover": {
-                    color: "#FF6B35",
-                    bgcolor: "rgba(255, 107, 53, 0.1)",
+                    color: "#dc2626",
+                    bgcolor: "rgba(220, 38, 38, 0.1)",
                   },
                 }}
               >
@@ -85,10 +107,10 @@ export default function Footer() {
               </IconButton>
               <IconButton
                 sx={{
-                  color: "#999",
+                  color: "#9ca3af",
                   "&:hover": {
-                    color: "#FF6B35",
-                    bgcolor: "rgba(255, 107, 53, 0.1)",
+                    color: "#dc2626",
+                    bgcolor: "rgba(220, 38, 38, 0.1)",
                   },
                 }}
               >
@@ -96,46 +118,44 @@ export default function Footer() {
               </IconButton>
               <IconButton
                 sx={{
-                  color: "#999",
+                  color: "#9ca3af",
                   "&:hover": {
-                    color: "#FF6B35",
-                    bgcolor: "rgba(255, 107, 53, 0.1)",
+                    color: "#dc2626",
+                    bgcolor: "rgba(220, 38, 38, 0.1)",
                   },
                 }}
               >
-                <YouTube />
+                <LinkedIn />
               </IconButton>
             </Box>
           </Box>
 
           {/* Links Sections */}
-          <Box sx={{ flex: { xs: "1 1 100%", md: "1 1 66%" }, display: "flex", flexWrap: "wrap", gap: 4 }}>
-            {/* Shop Links */}
+          <Box sx={{ flex: { xs: "1 1 100%", md: "1 1 66%" }, display: "flex", flexWrap: "wrap", gap: 6 }}>
+            {/* Products Links */}
             <Box sx={{ flex: { xs: "1 1 50%", md: "1 1 25%" } }}>
               <Typography
                 variant="h6"
                 sx={{
                   fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.5px",
-                  mb: 2,
+                  mb: 3,
                   color: "white",
                 }}
               >
-                SHOP
+                Products
               </Typography>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-                {footerLinks.shop.map((link) => (
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
+                {footerLinks.products.map((link) => (
                   <MuiLink
                     key={link.name}
                     component={Link}
                     href={link.href}
                     sx={{
-                      color: "#999",
+                      color: "#d1d5db",
                       textDecoration: "none",
                       fontSize: "0.9rem",
                       "&:hover": {
-                        color: "#FF6B35",
+                        color: "#dc2626",
                       },
                       transition: "color 0.3s ease",
                     }}
@@ -146,32 +166,30 @@ export default function Footer() {
               </Box>
             </Box>
 
-            {/* Brands Links */}
+            {/* Services Links */}
             <Box sx={{ flex: { xs: "1 1 50%", md: "1 1 25%" } }}>
               <Typography
                 variant="h6"
                 sx={{
                   fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.5px",
-                  mb: 2,
+                  mb: 3,
                   color: "white",
                 }}
               >
-                BRANDS
+                Services
               </Typography>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-                {footerLinks.brands.map((link) => (
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
+                {footerLinks.services.map((link) => (
                   <MuiLink
                     key={link.name}
                     component={Link}
                     href={link.href}
                     sx={{
-                      color: "#999",
+                      color: "#d1d5db",
                       textDecoration: "none",
                       fontSize: "0.9rem",
                       "&:hover": {
-                        color: "#FF6B35",
+                        color: "#dc2626",
                       },
                       transition: "color 0.3s ease",
                     }}
@@ -188,26 +206,24 @@ export default function Footer() {
                 variant="h6"
                 sx={{
                   fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.5px",
-                  mb: 2,
+                  mb: 3,
                   color: "white",
                 }}
               >
-                SUPPORT
+                Support
               </Typography>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
                 {footerLinks.support.map((link) => (
                   <MuiLink
                     key={link.name}
                     component={Link}
                     href={link.href}
                     sx={{
-                      color: "#999",
+                      color: "#d1d5db",
                       textDecoration: "none",
                       fontSize: "0.9rem",
                       "&:hover": {
-                        color: "#FF6B35",
+                        color: "#dc2626",
                       },
                       transition: "color 0.3s ease",
                     }}
@@ -224,26 +240,24 @@ export default function Footer() {
                 variant="h6"
                 sx={{
                   fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.5px",
-                  mb: 2,
+                  mb: 3,
                   color: "white",
                 }}
               >
-                COMPANY
+                Company
               </Typography>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
                 {footerLinks.company.map((link) => (
                   <MuiLink
                     key={link.name}
                     component={Link}
                     href={link.href}
                     sx={{
-                      color: "#999",
+                      color: "#d1d5db",
                       textDecoration: "none",
                       fontSize: "0.9rem",
                       "&:hover": {
-                        color: "#FF6B35",
+                        color: "#dc2626",
                       },
                       transition: "color 0.3s ease",
                     }}
@@ -256,53 +270,23 @@ export default function Footer() {
           </Box>
         </Box>
 
-        {/* Contact Info */}
-        <Box sx={{ mt: 4, pt: 4, borderTop: "1px solid #333" }}>
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-            <Box sx={{ flex: { xs: "1 1 100%", md: "1 1 33%" } }}>
-              <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                <Email sx={{ color: "#FF6B35", mr: 2 }} />
-                <Typography variant="body2" sx={{ color: "#ccc" }}>
-                  support@tambykez.com
-                </Typography>
-              </Box>
-            </Box>
-            <Box sx={{ flex: { xs: "1 1 100%", md: "1 1 33%" } }}>
-              <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                <Phone sx={{ color: "#FF6B35", mr: 2 }} />
-                <Typography variant="body2" sx={{ color: "#ccc" }}>
-                  1-800-TAMBYKEZ
-                </Typography>
-              </Box>
-            </Box>
-            <Box sx={{ flex: { xs: "1 1 100%", md: "1 1 33%" } }}>
-              <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                <LocationOn sx={{ color: "#FF6B35", mr: 2 }} />
-                <Typography variant="body2" sx={{ color: "#ccc" }}>
-                  General Santos City, Philippines
-                </Typography>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-
-        <Divider sx={{ my: 3, borderColor: "#333" }} />
+        <Divider sx={{ my: 4, borderColor: "#374151" }} />
 
         {/* Bottom Bar */}
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 2 }}>
-          <Typography variant="body2" sx={{ color: "#999" }}>
-            © 2025 Tambykez - Gensan. All rights reserved.
+          <Typography variant="body2" sx={{ color: "#9ca3af" }}>
+            © 2025 Professional Equipment Co. All rights reserved.
           </Typography>
           <Box sx={{ display: "flex", gap: 3 }}>
             <MuiLink
               component={Link}
               href="/privacy"
               sx={{
-                color: "#999",
+                color: "#9ca3af",
                 textDecoration: "none",
                 fontSize: "0.85rem",
                 "&:hover": {
-                  color: "#FF6B35",
+                  color: "#dc2626",
                 },
               }}
             >
@@ -312,11 +296,11 @@ export default function Footer() {
               component={Link}
               href="/terms"
               sx={{
-                color: "#999",
+                color: "#9ca3af",
                 textDecoration: "none",
                 fontSize: "0.85rem",
                 "&:hover": {
-                  color: "#FF6B35",
+                  color: "#dc2626",
                 },
               }}
             >
@@ -324,17 +308,17 @@ export default function Footer() {
             </MuiLink>
             <MuiLink
               component={Link}
-              href="/cookies"
+              href="/accessibility"
               sx={{
-                color: "#999",
+                color: "#9ca3af",
                 textDecoration: "none",
                 fontSize: "0.85rem",
                 "&:hover": {
-                  color: "#FF6B35",
+                  color: "#dc2626",
                 },
               }}
             >
-              Cookie Policy
+              Accessibility
             </MuiLink>
           </Box>
         </Box>

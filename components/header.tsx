@@ -23,6 +23,7 @@ import {
   alpha,
   Avatar,
   Divider,
+  Paper,
 } from "@mui/material"
 import {
   Search,
@@ -37,6 +38,8 @@ import {
   Logout,
   AccountCircle,
   Dashboard,
+  Phone,
+  Email,
 } from "@mui/icons-material"
 import Link from "next/link"
 import { useSession, signOut } from "next-auth/react"
@@ -98,19 +101,47 @@ export default function Header({ categories, brands }: HeaderProps) {
 
   return (
     <>
+      {/* Top Bar */}
+      <Box sx={{ bgcolor: "#1e3a8a", color: "white", py: 1 }}>
+        <Container maxWidth="xl">
+          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <Phone sx={{ fontSize: 16 }} />
+                <Typography variant="body2" sx={{ fontSize: "0.875rem" }}>
+                  (555) 123-4567
+                </Typography>
+              </Box>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <Email sx={{ fontSize: 16 }} />
+                <Typography variant="body2" sx={{ fontSize: "0.875rem" }}>
+                  info@professionalequipment.com
+                </Typography>
+              </Box>
+            </Box>
+            <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center", gap: 2 }}>
+              <Typography variant="body2" sx={{ fontSize: "0.875rem" }}>
+                Free Shipping on Orders Over $500
+              </Typography>
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+
+      {/* Main Header */}
       <AppBar
         position="sticky"
         sx={{
-          bgcolor: "#000000",
-          borderBottom: "1px solid #333",
-          boxShadow: "none",
+          bgcolor: "white",
+          borderBottom: "1px solid #e5e7eb",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
         }}
       >
         <Container maxWidth="xl">
-          <Toolbar sx={{ px: { xs: 0, sm: 2 } }}>
+          <Toolbar sx={{ px: { xs: 0, sm: 2 }, py: 1 }}>
             {/* Mobile Menu Button */}
             {isMobile && (
-              <IconButton edge="start" color="inherit" onClick={() => setMobileMenuOpen(true)} sx={{ mr: 2 }}>
+              <IconButton edge="start" sx={{ color: "#1f2937", mr: 2 }} onClick={() => setMobileMenuOpen(true)}>
                 <MenuIcon />
               </IconButton>
             )}
@@ -122,16 +153,15 @@ export default function Header({ categories, brands }: HeaderProps) {
                 sx={{
                   fontWeight: 900,
                   letterSpacing: "-0.02em",
-                  textTransform: "uppercase",
-                  color: "white",
+                  color: "#1e3a8a",
                   cursor: "pointer",
                   "&:hover": {
-                    color: "#FF6B35",
+                    color: "#dc2626",
                   },
                   transition: "color 0.3s ease",
                 }}
               >
-                TAMBYKEZ
+                PROFESSIONAL EQUIPMENT
               </Typography>
             </Link>
 
@@ -139,52 +169,32 @@ export default function Header({ categories, brands }: HeaderProps) {
             {!isMobile && (
               <Box sx={{ display: "flex", ml: 4, gap: 1 }}>
                 <Button
-                  color="inherit"
+                  sx={{ color: "#1f2937" }}
                   onClick={handleCategoriesClick}
                   endIcon={<KeyboardArrowDown />}
-                  sx={{
-                    fontWeight: 600,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.5px",
-                    "&:hover": {
-                      color: "#FF6B35",
-                      bgcolor: "transparent",
-                    },
-                  }}
                 >
-                  Collections
+                  Categories
                 </Button>
                 <Button
-                  color="inherit"
+                  sx={{ color: "#1f2937" }}
                   onClick={handleBrandsClick}
                   endIcon={<KeyboardArrowDown />}
-                  sx={{
-                    fontWeight: 600,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.5px",
-                    "&:hover": {
-                      color: "#FF6B35",
-                      bgcolor: "transparent",
-                    },
-                  }}
                 >
                   Brands
                 </Button>
                 <Button
-                  color="inherit"
                   component={Link}
-                  href="/sale"
-                  sx={{
-                    fontWeight: 600,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.5px",
-                    color: "#FF6B35",
-                    "&:hover": {
-                      bgcolor: "rgba(255, 107, 53, 0.1)",
-                    },
-                  }}
+                  href="/about"
+                  sx={{ color: "#1f2937" }}
                 >
-                  Sale
+                  About
+                </Button>
+                <Button
+                  component={Link}
+                  href="/contact"
+                  sx={{ color: "#1f2937" }}
+                >
+                  Contact
                 </Button>
               </Box>
             )}
@@ -193,15 +203,20 @@ export default function Header({ categories, brands }: HeaderProps) {
             <Box
               sx={{
                 position: "relative",
-                borderRadius: 1,
-                backgroundColor: alpha("#ffffff", 0.1),
+                borderRadius: 2,
+                backgroundColor: "#f9fafb",
+                border: "1px solid #e5e7eb",
                 "&:hover": {
-                  backgroundColor: alpha("#ffffff", 0.15),
+                  borderColor: "#dc2626",
+                },
+                "&:focus-within": {
+                  borderColor: "#dc2626",
+                  boxShadow: "0 0 0 3px rgba(220, 38, 38, 0.1)",
                 },
                 marginLeft: "auto",
                 marginRight: 2,
                 width: { xs: "100%", sm: "auto" },
-                maxWidth: { xs: 200, sm: 300 },
+                maxWidth: { xs: 200, sm: 350 },
               }}
             >
               <Box
@@ -215,14 +230,14 @@ export default function Header({ categories, brands }: HeaderProps) {
                   justifyContent: "center",
                 }}
               >
-                <Search sx={{ color: "#999" }} />
+                <Search sx={{ color: "#6b7280" }} />
               </Box>
               <InputBase
-                placeholder="Search gear..."
+                placeholder="Search products..."
                 sx={{
-                  color: "inherit",
+                  color: "#1f2937",
                   "& .MuiInputBase-input": {
-                    padding: theme.spacing(1, 1, 1, 0),
+                    padding: theme.spacing(1.5, 1, 1.5, 0),
                     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
                     transition: theme.transitions.create("width"),
                     width: "100%",
@@ -236,47 +251,47 @@ export default function Header({ categories, brands }: HeaderProps) {
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               {/* Wishlist */}
               <IconButton
-                color="inherit"
                 component={Link}
                 href="/wishlist"
                 sx={{
+                  color: "#6b7280",
                   "&:hover": {
-                    color: "#FF6B35",
+                    color: "#dc2626",
                   },
                 }}
               >
-                <Badge badgeContent={3} color="error">
+                <Badge badgeContent={3} sx={{ "& .MuiBadge-badge": { bgcolor: "#dc2626" } }}>
                   <Favorite />
                 </Badge>
               </IconButton>
 
               {/* Cart */}
               <IconButton
-                color="inherit"
                 component={Link}
                 href="/cart"
                 sx={{
+                  color: "#6b7280",
                   "&:hover": {
-                    color: "#FF6B35",
+                    color: "#dc2626",
                   },
                 }}
               >
-                <Badge badgeContent={2} color="error">
+                <Badge badgeContent={2} sx={{ "& .MuiBadge-badge": { bgcolor: "#dc2626" } }}>
                   <ShoppingCart />
                 </Badge>
               </IconButton>
 
               {isLoading ? (
-                <IconButton disabled sx={{ color: "#666" }}>
+                <IconButton disabled sx={{ color: "#9ca3af" }}>
                   <Person />
                 </IconButton>
               ) : isAuthenticated ? (
                 <IconButton
-                  color="inherit"
                   onClick={handleUserMenuClick}
                   sx={{
+                    color: "#6b7280",
                     "&:hover": {
-                      color: "#FF6B35",
+                      color: "#dc2626",
                     },
                   }}
                 >
@@ -284,7 +299,7 @@ export default function Header({ categories, brands }: HeaderProps) {
                     sx={{
                       width: 32,
                       height: 32,
-                      bgcolor: "#FF6B35",
+                      bgcolor: "#dc2626",
                       fontSize: "0.875rem",
                       fontWeight: 600,
                     }}
@@ -300,13 +315,9 @@ export default function Header({ categories, brands }: HeaderProps) {
                       href="/auth/sign-in"
                       startIcon={<Login />}
                       sx={{
-                        color: "white",
-                        fontWeight: 600,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.5px",
+                        color: "#1f2937",
                         "&:hover": {
-                          color: "#FF6B35",
-                          bgcolor: "transparent",
+                          color: "#dc2626",
                         },
                       }}
                     >
@@ -319,14 +330,11 @@ export default function Header({ categories, brands }: HeaderProps) {
                     variant="contained"
                     startIcon={!isMobile ? <PersonAdd /> : undefined}
                     sx={{
-                      bgcolor: "#FF6B35",
+                      bgcolor: "#dc2626",
                       color: "white",
-                      fontWeight: 600,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.5px",
                       px: isMobile ? 2 : 3,
                       "&:hover": {
-                        bgcolor: "#E55A2B",
+                        bgcolor: "#b91c1c",
                       },
                     }}
                   >
@@ -346,10 +354,11 @@ export default function Header({ categories, brands }: HeaderProps) {
         onClose={handleClose}
         PaperProps={{
           sx: {
-            bgcolor: "#111111",
-            border: "1px solid #333",
+            bgcolor: "white",
+            border: "1px solid #e5e7eb",
             mt: 1,
-            minWidth: 200,
+            minWidth: 250,
+            boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
           },
         }}
       >
@@ -360,13 +369,11 @@ export default function Header({ categories, brands }: HeaderProps) {
             component={Link}
             href={`/categories/${category.slug}`}
             sx={{
-              color: "white",
-              fontWeight: 600,
-              textTransform: "uppercase",
-              letterSpacing: "0.5px",
+              color: "#1f2937",
+              py: 1.5,
               "&:hover": {
-                bgcolor: "rgba(255, 107, 53, 0.1)",
-                color: "#FF6B35",
+                bgcolor: "#f3f4f6",
+                color: "#dc2626",
               },
             }}
           >
@@ -382,10 +389,11 @@ export default function Header({ categories, brands }: HeaderProps) {
         onClose={handleClose}
         PaperProps={{
           sx: {
-            bgcolor: "#111111",
-            border: "1px solid #333",
+            bgcolor: "white",
+            border: "1px solid #e5e7eb",
             mt: 1,
-            minWidth: 200,
+            minWidth: 250,
+            boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
           },
         }}
       >
@@ -396,11 +404,11 @@ export default function Header({ categories, brands }: HeaderProps) {
             component={Link}
             href={`/brands/${brand.slug}`}
             sx={{
-              color: "white",
-              fontWeight: 600,
+              color: "#1f2937",
+              py: 1.5,
               "&:hover": {
-                bgcolor: "rgba(255, 107, 53, 0.1)",
-                color: "#FF6B35",
+                bgcolor: "#f3f4f6",
+                color: "#dc2626",
               },
             }}
           >
@@ -416,19 +424,19 @@ export default function Header({ categories, brands }: HeaderProps) {
         onClose={() => setMobileMenuOpen(false)}
         PaperProps={{
           sx: {
-            bgcolor: "#000000",
-            color: "white",
+            bgcolor: "white",
+            color: "#1f2937",
             width: 280,
             border: "none",
           },
         }}
       >
-        <Box sx={{ p: 2, borderBottom: "1px solid #333" }}>
+        <Box sx={{ p: 2, borderBottom: "1px solid #e5e7eb" }}>
           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <Typography variant="h6" sx={{ fontWeight: 900, textTransform: "uppercase" }}>
-              TAMBYKEZ
+            <Typography variant="h6" sx={{ fontWeight: 900, color: "#1e3a8a" }}>
+              MENU
             </Typography>
-            <IconButton onClick={() => setMobileMenuOpen(false)} sx={{ color: "white" }}>
+            <IconButton onClick={() => setMobileMenuOpen(false)} sx={{ color: "#6b7280" }}>
               <Close />
             </IconButton>
           </Box>
@@ -439,9 +447,7 @@ export default function Header({ categories, brands }: HeaderProps) {
               primary="CATEGORIES"
               primaryTypographyProps={{
                 fontWeight: 700,
-                color: "#FF6B35",
-                textTransform: "uppercase",
-                letterSpacing: "0.5px",
+                color: "#dc2626",
               }}
             />
           </ListItem>
@@ -454,18 +460,11 @@ export default function Header({ categories, brands }: HeaderProps) {
               sx={{
                 pl: 4,
                 "&:hover": {
-                  bgcolor: "rgba(255, 107, 53, 0.1)",
+                  bgcolor: "#f3f4f6",
                 },
               }}
             >
-              <ListItemText
-                primary={category.name}
-                primaryTypographyProps={{
-                  fontWeight: 600,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.5px",
-                }}
-              />
+              <ListItemText primary={category.name} />
             </ListItem>
           ))}
           <ListItem sx={{ mt: 2 }}>
@@ -473,9 +472,7 @@ export default function Header({ categories, brands }: HeaderProps) {
               primary="BRANDS"
               primaryTypographyProps={{
                 fontWeight: 700,
-                color: "#FF6B35",
-                textTransform: "uppercase",
-                letterSpacing: "0.5px",
+                color: "#dc2626",
               }}
             />
           </ListItem>
@@ -488,29 +485,22 @@ export default function Header({ categories, brands }: HeaderProps) {
               sx={{
                 pl: 4,
                 "&:hover": {
-                  bgcolor: "rgba(255, 107, 53, 0.1)",
+                  bgcolor: "#f3f4f6",
                 },
               }}
             >
-              <ListItemText
-                primary={brand.name}
-                primaryTypographyProps={{
-                  fontWeight: 600,
-                }}
-              />
+              <ListItemText primary={brand.name} />
             </ListItem>
           ))}
           {isAuthenticated && (
             <>
-              <Divider sx={{ borderColor: "#333", mt: 2 }} />
+              <Divider sx={{ borderColor: "#e5e7eb", mt: 2 }} />
               <ListItem sx={{ mt: 2 }}>
                 <ListItemText
                   primary="MY ACCOUNT"
                   primaryTypographyProps={{
                     fontWeight: 700,
-                    color: "#FF6B35",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.5px",
+                    color: "#dc2626",
                   }}
                 />
               </ListItem>
@@ -522,16 +512,11 @@ export default function Header({ categories, brands }: HeaderProps) {
                   sx={{
                     pl: 4,
                     "&:hover": {
-                      bgcolor: "rgba(255, 107, 53, 0.1)",
+                      bgcolor: "#f3f4f6",
                     },
                   }}
                 >
-                  <ListItemText
-                    primary="Admin Dashboard"
-                    primaryTypographyProps={{
-                      fontWeight: 600,
-                    }}
-                  />
+                  <ListItemText primary="Admin Dashboard" />
                 </ListItem>
               )}
               <ListItem
@@ -539,16 +524,11 @@ export default function Header({ categories, brands }: HeaderProps) {
                 sx={{
                   pl: 4,
                   "&:hover": {
-                    bgcolor: "rgba(255, 107, 53, 0.1)",
+                    bgcolor: "#f3f4f6",
                   },
                 }}
               >
-                <ListItemText
-                  primary="Sign Out"
-                  primaryTypographyProps={{
-                    fontWeight: 600,
-                  }}
-                />
+                <ListItemText primary="Sign Out" />
               </ListItem>
             </>
           )}
@@ -562,18 +542,19 @@ export default function Header({ categories, brands }: HeaderProps) {
         onClose={handleClose}
         PaperProps={{
           sx: {
-            bgcolor: "#111111",
-            border: "1px solid #333",
+            bgcolor: "white",
+            border: "1px solid #e5e7eb",
             mt: 1,
             minWidth: 200,
+            boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
           },
         }}
       >
-        <Box sx={{ px: 3, py: 2, borderBottom: "1px solid #333" }}>
-          <Typography variant="subtitle2" sx={{ color: "#FF6B35", fontWeight: 600 }}>
+        <Box sx={{ px: 3, py: 2, borderBottom: "1px solid #e5e7eb" }}>
+          <Typography variant="subtitle2" sx={{ color: "#dc2626", fontWeight: 600 }}>
             {getUserDisplayName()}
           </Typography>
-          <Typography variant="body2" sx={{ color: "#999" }}>
+          <Typography variant="body2" sx={{ color: "#6b7280" }}>
             {session?.user?.email}
           </Typography>
         </Box>
@@ -583,11 +564,11 @@ export default function Header({ categories, brands }: HeaderProps) {
           component={Link}
           href="/account"
           sx={{
-            color: "white",
-            fontWeight: 600,
+            color: "#1f2937",
+            py: 1.5,
             "&:hover": {
-              bgcolor: "rgba(255, 107, 53, 0.1)",
-              color: "#FF6B35",
+              bgcolor: "#f3f4f6",
+              color: "#dc2626",
             },
           }}
         >
@@ -601,11 +582,11 @@ export default function Header({ categories, brands }: HeaderProps) {
             component={Link}
             href="/admin"
             sx={{
-              color: "white",
-              fontWeight: 600,
+              color: "#1f2937",
+              py: 1.5,
               "&:hover": {
-                bgcolor: "rgba(255, 107, 53, 0.1)",
-                color: "#FF6B35",
+                bgcolor: "#f3f4f6",
+                color: "#dc2626",
               },
             }}
           >
@@ -614,16 +595,16 @@ export default function Header({ categories, brands }: HeaderProps) {
           </MenuItem>
         )}
 
-        <Divider sx={{ borderColor: "#333" }} />
+        <Divider sx={{ borderColor: "#e5e7eb" }} />
 
         <MenuItem
           onClick={handleSignOut}
           sx={{
-            color: "white",
-            fontWeight: 600,
+            color: "#1f2937",
+            py: 1.5,
             "&:hover": {
-              bgcolor: "rgba(255, 107, 53, 0.1)",
-              color: "#FF6B35",
+              bgcolor: "#f3f4f6",
+              color: "#dc2626",
             },
           }}
         >
